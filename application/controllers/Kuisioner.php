@@ -3,9 +3,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Kuisioner extends CI_Controller {
 
-    
-
-
     function __construct(){
 		parent::__construct();		
         $this->load->model('MKuisioner','k');
@@ -24,36 +21,22 @@ class Kuisioner extends CI_Controller {
         $this->load->view('sider');
         $this->load->view('sideBarKiri');
         $this->load->view('index');
-        
-        $idCustomer = $this->session->userdata['pelangganLogin']['id'];
-        $data['listKuisioner'] = $this->k->getListKuisioner($idCustomer);
-        $listKuisioner = $this->k->getListKodeKuisioner($idCustomer)->result();
-        $totalListKuisioner = count ($listKuisioner);
-
-        // print_r($totalListKuisioner); die;
-
-        for ($x=0; $x<$totalListKuisioner; $x++){
-            $nilai = $listKuisioner[$x]->kodeKuisioner;
-
-            $this->pearson($nilai);
-
-            // echo $nilai."<br>"; 
-        }
-
-
     }
     
     public function tambahKuisioner(){
-        // $idCustomer = $this->session->userdata['pelangganLogin']['id'];
-        // print_r($idCustomer); die;
-        // $data['nama'] = $this->session->userdata['pelangganLogin']['nama'];
-
         $this->load->view('header');
         $this->load->view('sider');
         $this->load->view('sideBarKiri');
         $this->load->view('index');
         $this->load->view('kuisioner');
+    }
 
+    public function tambahPertanyaan(){
+        $this->load->view('header');
+        $this->load->view('sider');
+        $this->load->view('sideBarKiri');
+        $this->load->view('index');
+        $this->load->view('tambahPertanyaan');
     }
 
     public function tambahKuisionerr(){
@@ -129,11 +112,48 @@ class Kuisioner extends CI_Controller {
         $this->k->hapusIsiKuisioner($id);
         redirect('kuisioner/lihatKuisioner/','refresh');
     }
+
+    
     
     public function prosesKuisioner(){
-        $kodeKuisioner = $this->input->post('kodeKuisioner');   
+      
         $judul = $this->input->post('judul');
         $deskripsi = $this->input->post('deskripsi');
+        $idCustomer = $this->session->userdata['pelangganLogin']['id'];
+
+        $data = array(
+            'idUser' => $idCustomer,
+            'judul_kuisioner' => $judul,
+            'deskripsi' => $deskripsi
+        );
+
+        // $cekPearson = $this->k->cekPearson($kode);
+
+        // if ($cekPearson){
+        //     $statusPearson = "ada";
+        // }else{
+        //     $statusPearson ="tidak ada";
+        // }
+
+        // if ($statusPearson=="tidak ada"){
+        //     $this->pearsonSdhAda($kode);
+        // }
+        
+        $this->k->tambahKuisioner($data);
+        $idTerakhir = $this->db->insert_id();
+
+        // echo $idTerakhir; die;
+       
+
+        $message = "Sukses Menambahkan Pertanyaan";
+        echo "<script type='text/javascript'>alert('$message');</script>";
+        redirect('Kuisioner/tambahPertanyaan/'.$idTerakhir,'refresh');
+
+    }
+
+    public function prosesPertanyaan(){
+      
+        $idKuisioner = $this->input->post('idKuisioner');
         $pertanyaan = $this->input->post('pertanyaan');
         $jawaban1 = $this->input->post('jawaban1');
         $jawaban2 = $this->input->post('jawaban2');
@@ -143,46 +163,40 @@ class Kuisioner extends CI_Controller {
         $bobotB = $this->input->post('bobotB');
         $bobotC = $this->input->post('bobotC');
         $bobotD = $this->input->post('bobotD');
-        $idCustomer = $this->session->userdata['pelangganLogin']['id'];
 
         $data = array(
-            'idUser' => $idCustomer,
-            'judul' => $judul,
-            'deskripsi' => $deskripsi,
-            'kodeKuisioner' => $kodeKuisioner,
+            'idKuisioner' => $idKuisioner,
             'pertanyaan' => $pertanyaan,
             'jawabanA' => $jawaban1,
             'jawabanB' => $jawaban2,
             'jawabanC' => $jawaban3,
             'jawabanD' => $jawaban4,
-            'judul' => $judul,
             'bobotA' => $bobotA,
             'bobotB' => $bobotB,
             'bobotC' => $bobotC,
             'bobotD' => $bobotD
         );
 
-        $kode = $kodeKuisioner;
        
         // print_r($data);
 
-        $cekPearson = $this->k->cekPearson($kode);
+        // $cekPearson = $this->k->cekPearson($kode);
 
-        if ($cekPearson){
-            $statusPearson = "ada";
-        }else{
-            $statusPearson ="tidak ada";
-        }
+        // if ($cekPearson){
+        //     $statusPearson = "ada";
+        // }else{
+        //     $statusPearson ="tidak ada";
+        // }
 
-        if ($statusPearson=="tidak ada"){
-            $this->pearsonSdhAda($kode);
-        }
-        $this->k->tambahKuisioner($data);
-       
+        // if ($statusPearson=="tidak ada"){
+        //     $this->pearsonSdhAda($kode);
+        // }
+
+        $this->k->tambagPertanyaan($data);
 
         $message = "Sukses Menambahkan Pertanyaan";
         echo "<script type='text/javascript'>alert('$message');</script>";
-        redirect('Kuisioner/tambahKuisionerr/'.$kodeKuisioner,'refresh');
+        redirect('Kuisioner/tambahPertanyaan/'.$idKuisioner,'refresh');
 
     }
 
@@ -192,11 +206,14 @@ class Kuisioner extends CI_Controller {
         $this->load->view('sideBarKiri');
         $this->load->view('index');
         $idCustomer = $this->session->userdata['pelangganLogin']['id'];
-        $data['listPerson'] = $this->k->getListPerson($idCustomer);
+        // $data['listPerson'] = $this->k->getListPerson($idCustomer);
 
-        // $data['listKuisioner'] = $this->k->getListKuisioner($idCustomer);
-        $listKuisioner = $this->k->getListKodeKuisioner($idCustomer)->result();
-        $totalListKuisioner = count ($listKuisioner);
+        $data['listKuisioner'] = $this->k->getListKodeKuisioner($idCustomer)->result();
+        // $listKuisioner = $this->k->getListKodeKuisioner($idCustomer)->result();
+        // $totalListKuisioner = count ($listKuisioner);
+
+        // print_r ($listKuisioner); die;
+        
 
         // $data['pearson'] = $this->k->getDataPearson();
 
@@ -422,11 +439,6 @@ class Kuisioner extends CI_Controller {
 
     public function pearson($nilai){
         $kode = $nilai;
-
-        // print_r("update"); die;
-
-        // print_r($nilai); die;
-
         
         $orangKe = 1;
         $total1 = ($this->k->getSkorByIDSoal($kode,$orangKe)->row(0,'array'));

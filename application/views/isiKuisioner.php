@@ -2,7 +2,6 @@
                                 <div class="card-body">
                                     
                                     <h5 class="card-title">Kuisioner</h5>
-                                    <p>The <code>.form-group</code> class is the easiest way to add some structure to forms. It provides a flexible class that encourages proper grouping of labels, controls, optional help text, and form validation messaging.</p>
                                     <?= form_open('user/jawab') ?>
                                         <div class="form-group">
                                             <label for="formGroupExampleInput" class="">Nama Lengkap</label>

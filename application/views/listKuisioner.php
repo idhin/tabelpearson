@@ -14,30 +14,27 @@
                                                 <tr>
                                                     <th scope="col">No</th>
                                                     <th scope="col">Judul</th>
-                                                    <th scope="col">R Hitung</th>
-                                                    <th scope="col">R Table</th>
-                                                    <th scope="col">Status</th>
-                                                    <th scope="col">LINK</th>
+                                                    <th scope="col">Deskripsi</th>
+                                                    <th scope="col">Link</th>
                                                     <th scope="col">Aksi</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <?php $no=1; foreach ($listPerson as $row) { ?>
+                                               <?php $no=1; foreach ($listKuisioner as $row) { ?>
                                                 <tr>
                                                     <th scope="row"><?= $no++; ?></th>
-                                                    <td><?= $row->judul ?></td>
-                                                    <td><?= $row->rhitung ?></td>
-                                                    <td><?= $row->rtable ?></td>
-                                                    <td><?= $row->status ?></td>
-                                                    <td><?= base_url(); ?>user/share/<?=  $row->kodeKuisioner ?></td>
-                                                    <td><a href="<?= base_url();?>kuisioner/lihatKuisioner/<?= $row->kodeKuisioner ?>" class="btn btn-secondary btn-sm active" role="button" aria-pressed="true">Detail</a>
-                                                    <!-- <a href="<?=  base_url();?>kuisioner/lihatHasil/<?= $row->kodeKuisioner ?>" class="btn btn-secondary btn-sm active" role="button" aria-pressed="true">Lihat Hasil</a> -->
-                                                    <a href="<?=  base_url();?>kuisioner/hapus/<?= $row->kodeKuisioner ?>" class="btn btn-secondary btn-sm active" role="button" aria-pressed="true">Hapus</a>
+                                                    <td><?= $row->judul_kuisioner ?></td>
+                                                 
+                                                    <td><?= $row->deskripsi ?></td>
+                                                    <td><?= base_url(); ?>user/share/<?=  $row->id ?></td>
+                                                    <td><a href="<?= base_url();?>kuisioner/lihatKuisioner/<?= $row->id ?>" class="btn btn-secondary btn-sm active" role="button" aria-pressed="true">Detail</a>
+                                                    <!-- <a href="<?=  base_url();?>kuisioner/lihatHasil/<?= $row->id ?>" class="btn btn-secondary btn-sm active" role="button" aria-pressed="true">Lihat Hasil</a> -->
+                                                    <a href="<?=  base_url();?>kuisioner/hapus/<?= $row->id ?>" class="btn btn-secondary btn-sm active" role="button" aria-pressed="true">Hapus</a>
                                                     </td>
                                                                                                       
                                                     <!-- <td><button type="button" href="google.com" class="btn btn-primary btn-xs waves-effect waves-light">Edit</button></td> -->
                                                 </tr>
-                                                <?php } ?>
+                                               <?php } ?>
                                             </tbody>
                                         </table>       
                                     </div>

@@ -3,8 +3,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class MKuisioner extends CI_Model {
 
-    public function tambahKuisioner($data){
-        $this->db->insert('kuisioner',$data);
+    public function tambagPertanyaan($data){
+        $this->db->insert('pertanyaan',$data);
     }
     
     public function getListKuisioner($idCustomer){
@@ -30,7 +30,7 @@ class MKuisioner extends CI_Model {
 
     public function getListKodeKuisioner($idCustomer){
         $this->db->distinct();
-        $this->db->select('kodeKuisioner');
+        $this->db->select('*');
         $this->db->where('idUser',$idCustomer);
         $this->db->from('kuisioner');
         // $this->db->order_by('kodeKuisioner');
@@ -47,8 +47,8 @@ class MKuisioner extends CI_Model {
     public function getPertanyaan($kode){
         // $this->db->distinct();
         $this->db->select('*');
-        $this->db->where('kodeKuisioner',$kode);
-        $this->db->from('kuisioner');
+        $this->db->where('idKuisioner',$kode);
+        $this->db->from('pertanyaan');
         return $this->db->get()->result();
     }
 
@@ -127,8 +127,8 @@ class MKuisioner extends CI_Model {
     public function getKuisionerByIDDD($id){
         // $this->db->distinct();
         $this->db->select('*');
-        $this->db->where('kodeKuisioner',$id);
-        $this->db->from ('kuisioner');
+        $this->db->where('id',$id);
+        $this->db->from ('pertanyaan');
         return $this->db->get()->result();
     }
 

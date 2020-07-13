@@ -1,4 +1,4 @@
-<!-- Left Sidebar -->
+><!-- Left Sidebar -->
 <div class="page-content">
 
 <div class="container-fluid">
@@ -6,25 +6,16 @@
 <!-- Awal Isi -->
 <div class="card">
                                 <div class="card-body">
-                                    <h5 class="card-title">Tambah Kuisioner </h5>
-                                    <?= form_open('kuisioner/prosesKuisioner');?>
-                                        <!-- <div class="form-group">
-                                            <label for="exampleFormControlInput1">Kode Kuisioner</label>
-                                            <input type="text" class="form-control" name="kodeKuisioner" value="" id="exampleFormControlInput1" >
-                                        </div> -->
-
+                                    <h5 class="card-title">Tambah Pertanyaan</h5>
+                                    <?= form_open('kuisioner/prosesPertanyaan');?>
+                                 
                                         <div class="form-group">
-                                            <label for="exampleFormControlInput1">Judul</label>
-                                            <input type="text" class="form-control" name="judul" id="exampleFormControlInput1" >
+                                            <!-- <label for="exampleFormControlInput1">Kode Kuisioner</label> -->
+                                            <input type="hidden" class="form-control" name="idKuisioner" value="<?= $this->uri->segment(3); ?>">
                                         </div>
 
-                                        <div class="form-group">
-                                            <label for="exampleFormControlTextarea1">Deskripsi Judul (Opsional)</label>
-                                            <input type="text" class="form-control" name="deskripsi" rows="10" id="exampleFormControlInput1" >
-                                            <!-- <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea> -->
-                                        </div>
                                         
-                                        <!-- <div class="form-group">
+                                        <div class="form-group">
                                             <label for="exampleFormControlInput1">Pertanyaan </label>
                                             <input type="text" class="form-control" name="pertanyaan" name="pertanyaan" id="exampleFormControlInput1" >
                                         </div>
@@ -68,8 +59,6 @@
                                             <label for="exampleFormControlInput1">Bobot Nilai Jawaban 4</label>
                                             <input type="text" class="form-control" name="bobotD" id="exampleFormControlInput1" >
                                         </div>
-
- -->
 
 
                                         <button type="submit" class="btn btn-primary rounded-pill waves-effect waves-light">Submit</button>

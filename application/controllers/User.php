@@ -14,7 +14,6 @@ class User extends CI_Controller {
 		$this->load->view('register');
 	}
 	
-	
 	public function masuk()
 	{
 		$this->load->view('login');
@@ -80,8 +79,6 @@ class User extends CI_Controller {
             //  echo '<script>alert("Username atau Password anda salah");window.location.href = "'.base_url().'Login";</script>';;
             //   redirect('Login','refresh');
 		   }
-
-
 	}
 
 	public function logout(){
@@ -156,6 +153,8 @@ class User extends CI_Controller {
         $id = $this->input->post('idPertanyaan');
 
 		$idCustomer = $this->input->post('idUser');
+
+		print_r ($id); die;
 	
         $totalKuisioner = $this->k->getKuisionerByID($id,$idCustomer);
         $hitung = count($totalKuisioner);
