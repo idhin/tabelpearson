@@ -10,7 +10,7 @@
                                     <p>Sep Deskripnya Edit Yak <code>&lt;Disini&gt;</code>s, <code>&lt;Isinya&gt;</code>aa, Diedit bagian <code>&lt;ini&gt;</code>nnyakk <code>.atuh</code> Mantap Semangat </p>
                                     <?= form_open('kuisioner/prosesEditKuisioner');?>
                                         <?php foreach ($editKuisioner as $s) { ?>
-                                        <div class="form-group">
+                                        <!-- <div class="form-group">
                                             <label for="exampleFormControlInput1">Kode Kuisioner</label>
                                             <input type="text" class="form-control" value="<?= $s->kodeKuisioner?>" name="kodeKuisioner" id="exampleFormControlInput1" >
                                         </div>
@@ -24,9 +24,12 @@
                                         <div class="form-group">
                                             <label for="exampleFormControlTextarea1">Deskripsi Judul (Opsional)</label>
                                             <input type="text" class="form-control" value="<?= $s->deskripsi?>"  name="deskripsi" rows="10" id="exampleFormControlInput1" >
-                                            <!-- <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea> -->
-                                        </div>
-                                        
+                                         
+                                        </div> -->
+                                   
+                                            <input type="hidden" name="idPertanyaan" value="<?= $this->uri->segment(3); ?>">
+                                            
+
                                         <div class="form-group">
                                             <label for="exampleFormControlInput1">Pertanyaan </label>
                                             <input type="text" class="form-control" value="<?= $s->pertanyaan?>"  name="pertanyaan" name="pertanyaan" id="exampleFormControlInput1" >
@@ -49,7 +52,7 @@
 
                                         <div class="form-group">
                                             <label for="exampleFormControlInput1">Bobot Nilai Jawaban 2</label>
-                                            <input type="text" class="form-control" value="<?= $s->kodeKuisioner?>"  name="bobotB" id="exampleFormControlInput1" >
+                                            <input type="text" class="form-control" value="<?= $s->bobotB?>"  name="bobotB" id="exampleFormControlInput1" >
                                         </div>
 
                                         <div class="form-group">

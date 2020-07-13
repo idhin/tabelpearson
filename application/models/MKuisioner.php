@@ -172,15 +172,15 @@ class MKuisioner extends CI_Model {
 
     public function editKuisioner($data,$id){
         $this->db->where('id',$id);
-        $this->db->update('kuisioner',$data);
+        $this->db->update('pertanyaan',$data);
         return TRUE;
     }
 
     public function getKuisioner($kode,$idCustomer){
         $this->db->select('*');
         $this->db->where('id',$kode);
-        $this->db->where('idUser',$idCustomer);
-        $this->db->from('kuisioner');
+        // $this->db->where('idKuisione',$idCustomer);
+        $this->db->from('pertanyaan');
         return $this->db->get()->result();
     }
 

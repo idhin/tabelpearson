@@ -55,9 +55,9 @@ class Kuisioner extends CI_Controller {
     }
 
     public function prosesEditKuisioner(){
-        $kodeKuisioner = $this->input->post('kodeKuisioner');
-        $judul = $this->input->post('judul');
-        $deskripsi = $this->input->post('deskripsi');
+        // $kodeKuisioner = $this->input->post('kodeKuisioner');
+        // $judul = $this->input->post('judul');
+        // $deskripsi = $this->input->post('deskripsi');
         $pertanyaan = $this->input->post('pertanyaan');
         $jawaban1 = $this->input->post('jawaban1');
         $jawaban2 = $this->input->post('jawaban2');
@@ -67,21 +67,21 @@ class Kuisioner extends CI_Controller {
         $bobotB = $this->input->post('bobotB');
         $bobotC = $this->input->post('bobotC');
         $bobotD = $this->input->post('bobotD');
-        $id = $this->input->post('iniID');
+        $id = $this->input->post('idPertanyaan');
 
         $idCustomer = $this->session->userdata['pelangganLogin']['id'];
         // print_r($idCustomer); die;
 
         $data = array(
-            'judul' => $judul,
-            'deskripsi' => $deskripsi,
-            'kodeKuisioner' => $kodeKuisioner,
+            // 'judul' => $judul,
+            // 'deskripsi' => $deskripsi,
+            // 'kodeKuisioner' => $kodeKuisioner,
             'pertanyaan' => $pertanyaan,
             'jawabanA' => $jawaban1,
             'jawabanB' => $jawaban2,
             'jawabanC' => $jawaban3,
             'jawabanD' => $jawaban4,
-            'judul' => $judul,
+            
             'bobotA' => $bobotA,
             'bobotB' => $bobotB,
             'bobotC' => $bobotC,
@@ -94,7 +94,8 @@ class Kuisioner extends CI_Controller {
 
         $message = "Sukses Edit Pertanyaan";
         echo "<script type='text/javascript'>alert('$message');</script>";
-        redirect('Kuisioner/listKuisioner','refresh');
+        $referred_from = $this->session->userdata('referred_from'); 
+redirect($referred_from, 'refresh');
     }
     
     public function hapus(){
@@ -689,7 +690,7 @@ class Kuisioner extends CI_Controller {
 
     public function lihatKuisioner(){
         $this->load->view('header');
-        $this->load->view('sider');
+        $this->load->view('sider');     
         $this->load->view('sideBarKiri');
         $this->load->view('index');
         // $this->load->view('lihatKuisioner');
@@ -700,6 +701,8 @@ class Kuisioner extends CI_Controller {
         // $data['pearson'] = $this->k->getPearson($kode);
 
         // print_r($data); die;
+
+         $this->session->set_userdata('referred_from', current_url());
 
         $this->load->view('listKuisionerIsi',$data);
     }

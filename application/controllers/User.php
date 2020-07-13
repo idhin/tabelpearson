@@ -154,7 +154,7 @@ class User extends CI_Controller {
 
 		$idCustomer = $this->input->post('idUser');
 
-		print_r ($id); die;
+		print_r ("Sementara Di Buat Bagian ini"); die;
 	
         $totalKuisioner = $this->k->getKuisionerByID($id,$idCustomer);
         $hitung = count($totalKuisioner);
