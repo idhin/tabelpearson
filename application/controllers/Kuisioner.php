@@ -39,6 +39,14 @@ class Kuisioner extends CI_Controller {
         $this->load->view('tambahPertanyaan');
     }
 
+    public function tambahPertanyaann(){
+        $this->load->view('header');
+        $this->load->view('sider');
+        $this->load->view('sideBarKiri');
+        $this->load->view('index');
+        $this->load->view('tambahPertanyaann');
+    }
+
     public function tambahKuisionerr(){
         $id = $this->uri->segment(3);
         
@@ -51,7 +59,7 @@ class Kuisioner extends CI_Controller {
         $this->load->view('sider');
         $this->load->view('sideBarKiri');
         $this->load->view('index');
-        $this->load->view('kuisionerr',$data);
+        $this->load->view('kuisioner',$data);
     }
 
     public function prosesEditKuisioner(){
@@ -95,7 +103,8 @@ class Kuisioner extends CI_Controller {
         $message = "Sukses Edit Pertanyaan";
         echo "<script type='text/javascript'>alert('$message');</script>";
         $referred_from = $this->session->userdata('referred_from'); 
-redirect($referred_from, 'refresh');
+        redirect($referred_from, 'refresh');
+
     }
     
     public function hapus(){
@@ -201,6 +210,55 @@ redirect($referred_from, 'refresh');
 
     }
 
+    public function prosesPertanyaann(){
+      
+        $idKuisioner = $this->input->post('idKuisioner');
+        $pertanyaan = $this->input->post('pertanyaan');
+        $jawaban1 = $this->input->post('jawaban1');
+        $jawaban2 = $this->input->post('jawaban2');
+        $jawaban3 = $this->input->post('jawaban3');
+        $jawaban4 = $this->input->post('jawaban4');
+        $bobotA = $this->input->post('bobotA');
+        $bobotB = $this->input->post('bobotB');
+        $bobotC = $this->input->post('bobotC');
+        $bobotD = $this->input->post('bobotD');
+
+        $data = array(
+            'idKuisioner' => $idKuisioner,
+            'pertanyaan' => $pertanyaan,
+            'jawabanA' => $jawaban1,
+            'jawabanB' => $jawaban2,
+            'jawabanC' => $jawaban3,
+            'jawabanD' => $jawaban4,
+            'bobotA' => $bobotA,
+            'bobotB' => $bobotB,
+            'bobotC' => $bobotC,
+            'bobotD' => $bobotD
+        );
+
+       
+        // print_r($data);
+
+        // $cekPearson = $this->k->cekPearson($kode);
+
+        // if ($cekPearson){
+        //     $statusPearson = "ada";
+        // }else{
+        //     $statusPearson ="tidak ada";
+        // }
+
+        // if ($statusPearson=="tidak ada"){
+        //     $this->pearsonSdhAda($kode);
+        // }
+
+        $this->k->tambagPertanyaan($data);
+
+        $message = "Sukses Menambahkan Pertanyaan";
+        echo "<script type='text/javascript'>alert('$message');</script>";
+        redirect('Kuisioner/lihatKuisioner/'.$idKuisioner,'refresh');
+
+    }
+
     public function listKuisioner(){
         $this->load->view('header');
         $this->load->view('sider');
@@ -232,6 +290,22 @@ redirect($referred_from, 'refresh');
     
         $this->load->view('listKuisioner',$data);
     }
+
+    public function lihatResponden(){
+        $this->load->view('header');
+        $this->load->view('sider');
+        $this->load->view('sideBarKiri');
+        $this->load->view('index');
+        // $this->load->view('lihatResponden');
+
+        $idKuisioner = $this->uri->segment(3);
+        $data['listResponden'] = $this->k->listResponden($idKuisioner);
+        $this->load->view('lihatResponden',$data);
+
+        // print_r ($data); die;
+    }
+
+    
 
     public function pearsonSdhAda($nilai){
         $kode = $nilai;

@@ -1,4 +1,4 @@
-<!-- Left Sidebar -->
+><!-- Left Sidebar -->
 <div class="page-content">
 
 <div class="container-fluid">
@@ -6,42 +6,32 @@
 <!-- Awal Isi -->
 <div class="card">
                                 <div class="card-body">
-                                    <h5 class="card-title">Berikut List Kuisioner yang Pernah Anda Buat   </h5>
-                                    
-                                    <a href="<?= base_url();?>kuisioner/tambahPertanyaann/<?= $this->uri->segment(3); ?>" class="btn btn-secondary btn-sm active" role="button" aria-pressed="true">Tambah Pertanyaan</a>
-                                       <br>             <br>
                                     <!-- <p>Use <code>.table-striped</code> to add zebra-striping to any table row within the <code>&lt;tbody&gt;</code>.</p> -->
                                     <div class="table-container">
                                         <table class="table table-striped">
                                             <thead>
                                                 <tr>
-                                                    <th>No </th>
+                                                    <th scope="col">No</th>
+                                                    <th scope="col">Nama</th>
                                                     <th scope="col">Pertanyaan</th>
-                                                    <th scope="col">Jawaban A</th>
-                                                    <th scope="col">Jawaban B</th>
-                                                    <th scope="col">Jawaban C</th>
-                                                    <th scope="col">Jawaban D</th>
-
-                                                    <th scope="col">Aksi</th>
+                                                    <th scope="col">Jawaban</th>
+                                                    <th scope="col">Nilai</th>
+                                                    <!-- <th scope="col">Aksi</th> -->
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <?php $no=1; foreach ($listKuisioner as $row) { ?>
+                                               <?php $no=1; foreach ($listResponden as $row) { ?>
                                                 <tr>
                                                     <th scope="row"><?= $no++; ?></th>
-      
+                                                    <td><?= $row->nama ?></td>
                                                     <td><?= $row->pertanyaan ?></td>
-                                                    <td><?= $row->jawabanA ?></td>
-                                                    <td><?= $row->jawabanB ?></td>
-                                                    <td><?= $row->jawabanC ?></td>
-                                                    <td><?= $row->jawabanD ?></td>
-                                        
-                                                    <td><a href="<?= base_url();?>kuisioner/editKuisioner/<?= $row->id ?>" class="btn btn-secondary btn-sm active" role="button" aria-pressed="true">Edit</a>
-                                                    <a href="<?= base_url();?>kuisioner/hapusIsiKuisioner/<?= $row->id ?>" class="btn btn-secondary btn-sm active" role="button" aria-pressed="true">Hapus</a></td>
-                                                    
+                                                    <td><?= $row->jawaban ?></td>
+                                                    <td><?=  $row->nilai ?></td>
+                                                  
+                                                                                                      
                                                     <!-- <td><button type="button" href="google.com" class="btn btn-primary btn-xs waves-effect waves-light">Edit</button></td> -->
                                                 </tr>
-                                                <?php } ?>
+                                               <?php } ?>
                                             </tbody>
                                         </table>       
                                     </div>
@@ -77,11 +67,6 @@
 
 
                             <!-- Akhir Isi -->
-</div>
-
-</div>
-</div>
-    </div>
 </div>
 
 </div>

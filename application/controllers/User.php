@@ -47,10 +47,14 @@ class User extends CI_Controller {
 	public function share(){
         $kode = $this->uri->segment(3);
 
-        $data['pertanyaan'] = $this->k->getKuisionerByIDDD($kode);
+		$data['pertanyaan'] = $this->k->getKuisionerByIDDD($kode);
+		$data['judul'] = $this->k->getJudulKuisioner($kode);
 
-        $this->load->view('header');
-        $this->load->view('isiKuisioner',$data);
+		$this->load->view('header');
+
+		// print_r ($data); die;
+		$this->load->view('jawab',$data);
+        // $this->load->view('isiKuisioner',$data);
     }
 
 	public function masukDashboard(){
@@ -149,12 +153,122 @@ class User extends CI_Controller {
 		redirect('Dashboard/listForm','refresh');
 	}
 
+	public function prosesJawab(){
+		$id = $this->input->post('idPertanyaan');
+		$idCustomer = $this->input->post('idUser');
+		$namaLengkap = $this->input->post('namaLengkap');
+		$email = $this->input->post('email');
+		
+		$totalKuisioner = $this->k->getKuisionerByID($id,$idCustomer);
+		$hitung = count($totalKuisioner);
+
+		$kuisionerer =  $this->k->NewgetKuisionerByID($id,$idCustomer)->row(0,'array');
+		$kuisionerr =  $this->k->NewgetKuisionerByID($id,$idCustomer)->result();
+		
+		$idKuisionerrrr = $kuisionerer['idKuisioner'];
+		// print_r($h); die;
+
+		$orangTerakhir = $this->k->getOrangTerakhir($id)->row(0,'array');
+		$getOrangTerakhir = $orangTerakhir['orangKe'];
+
+		// $getOrangTerakhir = 2;
+
+		if ($getOrangTerakhir==null){
+			$orangKe=1;
+		}else{
+			$orangKe=$getOrangTerakhir+1;
+		}
+		
+		$soalKe = 0;
+
+		foreach ($kuisionerr as $xx){
+			$h = $xx->id;
+			$bobotAA = "bobotA".$h;
+			$bobotBB = "bobotB".$h;
+			$bobotCC = "bobotC".$h;
+			$bobotDD = "bobotD".$h;
+
+			$bobotA = $this->input->post($bobotAA);
+			$bobotB = $this->input->post($bobotBB);
+			$bobotC = $this->input->post($bobotCC);
+			$bobotD = $this->input->post($bobotDD);
+
+			if ($bobotA){
+				$nilai = $bobotA;
+			}elseif($bobotB){
+				$nilai = $bobotB;
+			}elseif($bobotC){
+				$nilai = $bobotC;
+			}elseif($bobotD){
+				$nilai = $bobotD;
+			}
+
+            $jawab = "jawaban".$h;
+			$jawaban = $this->input->post($jawab);
+
+			$nilaiOlahA = $this->k->getNilaiA($jawaban,$idKuisionerrrr)->row('0','array');
+			$nilaiA = $nilaiOlahA['bobotA'];
+			$jawabanA = $nilaiOlahA['jawabanA'];
+
+			$nilaiOlahB = $this->k->getNilaiB($jawaban,$idKuisionerrrr)->row('0','array');
+			$nilaiB = $nilaiOlahB['bobotB'];
+			$jawabanB = $nilaiOlahB['jawabanB'];
+
+			$nilaiOlahC = $this->k->getNilaiC($jawaban,$idKuisionerrrr)->row('0','array');
+			$nilaiC = $nilaiOlahC['bobotC'];
+			$jawabanC = $nilaiOlahC['jawabanC'];
+
+			$nilaiOlahD = $this->k->getNilaiD($jawaban,$idKuisionerrrr)->row('0','array');
+			$nilaiD = $nilaiOlahD['bobotD'];
+			$jawabanD = $nilaiOlahD['jawabanD'];
+
+			// print_r ($jawabanB); die;
+
+			if ($jawabanA!=null){
+				$nilai = $nilaiA;
+			}elseif($jawabanB!=null){
+				$nilai = $nilaiB;
+			}elseif($jawabanC!=null){
+				$nilai = $nilaiC;
+			}elseif($jawabanD!=null){
+				$nilai = $nilaiD;
+			}
+
+			// print_r($nilai); die;
+
+			$soalKe = $soalKe+1;
+
+			$data = [
+                'nama' =>$namaLengkap,
+                'email' => $email,
+				'jawaban' => $jawaban,
+				'orangKe' => $orangKe,
+				'soalKe' => $soalKe,
+                // 'kodeKuisioner' => $id,
+                'idPertanyaan' => $h,
+                'nilai' => $nilai
+            ];
+            $this->k->respondd($data);
+			
+		}
+
+		$message = "Sukses Menjawab Pertanyaan ";
+        echo "<script type='text/javascript'>alert('$message');</script>";
+        redirect('user/share/'.$id,'refresh');	
+
+		
+		
+		// print_r($jawaban); die;
+		
+
+	}
+
 	public function jawab(){
         $id = $this->input->post('idPertanyaan');
 
 		$idCustomer = $this->input->post('idUser');
 
-		print_r ("Sementara Di Buat Bagian ini"); die;
+		// print_r ("Sementara Di Buat Bagian ini"); die;
 	
         $totalKuisioner = $this->k->getKuisionerByID($id,$idCustomer);
         $hitung = count($totalKuisioner);
@@ -168,12 +282,12 @@ class User extends CI_Controller {
         $h = $kuisionerr['id'];
         // print_r($idCustomer); die;
 
-		$orangTerakhir = $this->k->getOrangTerakhir($kode)->row(0,'array');
-		$getOrangTerakhir = $orangTerakhir['orangKe'];
+		// $orangTerakhir = $this->k->getOrangTerakhir($kode)->row(0,'array');
+		// $getOrangTerakhir = $orangTerakhir['orangKe'];
 
 		// print_r ($getOrangTerakhir); die;
-		$orangKe = $getOrangTerakhir+1;
-		$soalKe = 0;
+		// $orangKe = $getOrangTerakhir+1;
+		// $soalKe = 0;
 
         for ($x=0; $x<=$hitung; $x++){
 
@@ -201,6 +315,7 @@ class User extends CI_Controller {
 
             $jawab = "jawaban".$h;
 			$jawaban = $this->input->post($jawab);
+			print_r($jawaban); die;
 
 
             $idCustomers = $this->input->post('idPertanyaan');
@@ -209,7 +324,7 @@ class User extends CI_Controller {
 			
 		
 			
-			$soalKe = $soalKe+1;
+			// $soalKe = $soalKe+1;
          
 			$ah = "pertanyaan".$h;
 
@@ -220,14 +335,14 @@ class User extends CI_Controller {
 			
 
             $data = [
-                'namaLengkap' =>$namaLengkap,
+                'nama' =>$namaLengkap,
                 'email' => $email,
-				'pertanyaan' => $pertanyaannnnn,
-				'orangKe' => $orangKe,
-				'soalKe' => $soalKe,
-                'kodeKuisioner' => $id,
+				// 'pertanyaan' => $pertanyaannnnn,
+				// 'orangKe' => $orangKe,
+				// 'soalKe' => $soalKe,
+                // 'kodeKuisioner' => $id,
                 'idPertanyaan' => $h,
-                'pilihan' => $jawaban
+                'nilai' => $jawaban
             ];
             $this->k->respondd($data);
             $h = $h+1;

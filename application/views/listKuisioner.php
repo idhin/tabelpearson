@@ -28,6 +28,9 @@
                                                     <td><?= $row->deskripsi ?></td>
                                                     <td><?= base_url(); ?>user/share/<?=  $row->id ?></td>
                                                     <td><a href="<?= base_url();?>kuisioner/lihatKuisioner/<?= $row->id ?>" class="btn btn-secondary btn-sm active" role="button" aria-pressed="true">Detail</a>
+                                                    
+                                                    <a href="<?=  base_url();?>kuisioner/lihatResponden/<?= $row->id ?>" class="btn btn-secondary btn-sm active" role="button" aria-pressed="true">Lihat Responden</a>
+                                                    
                                                     <!-- <a href="<?=  base_url();?>kuisioner/lihatHasil/<?= $row->id ?>" class="btn btn-secondary btn-sm active" role="button" aria-pressed="true">Lihat Hasil</a> -->
                                                     <a href="<?=  base_url();?>kuisioner/hapus/<?= $row->id ?>" class="btn btn-secondary btn-sm active" role="button" aria-pressed="true">Hapus</a>
                                                     </td>
