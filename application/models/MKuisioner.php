@@ -87,10 +87,11 @@ class MKuisioner extends CI_Model {
     }
 
     public function getSkorByIDSoal($kode,$orangKe){
-        $this->db->select_sum('pilihan');
-        $this->db->from('respon');
-        $this->db->where('kodeKuisioner',$kode);
-        $this->db->where('orangKe',$orangKe);
+        $this->db->select_sum('r.nilai');
+        $this->db->from('responden r');
+        $this->db->join('pertanyaan p','r.idpertanyaan=p.id');
+        $this->db->where('p.idKuisioner',$kode);
+        $this->db->where('r.orangKe',$orangKe);
         return $this->db->get();
     }
 
@@ -106,18 +107,20 @@ class MKuisioner extends CI_Model {
     }
 
     public function getTotalItem($kode,$soalKe){
-        $this->db->select_sum('pilihan');
-        $this->db->from('respon');
-        $this->db->where('kodeKuisioner',$kode);
-        $this->db->where('soalKe',$soalKe);
+        $this->db->select_sum('r.nilai');
+        $this->db->from('responden r');
+        $this->db->join('pertanyaan p','p.id=r.idpertanyaan');
+        $this->db->where('p.idKuisioner',$kode);
+        $this->db->where('r.soalKe',$soalKe);
         return $this->db->get();
     }
 
     public function getTotalSubject($kode){
         $this->db->distinct();
-        $this->db->select('namaLengkap');
-        $this->db->from('respon');
-        $this->db->where('kodeKuisioner',$kode);
+        $this->db->select('r. nama');
+        $this->db->from('responden r');
+        $this->db->join('pertanyaan p','p.id=r.idpertanyaan');
+        $this->db->where('p.idKuisioner',$kode);
         // $this->db->where('soalKe',$soalKe);
         return $this->db->get();
     }
@@ -209,8 +212,9 @@ class MKuisioner extends CI_Model {
 
     public function cekPearson($kode){
         $this->db->select('*');
-        $this->db->where('kodeKuisioner',$kode);
-        $this->db->from('pearson');
+        $this->db->from ('pearson pe');
+        $this->db->join('pertanyaan p','pe.idkuesioner=p.idKuisioner');
+        $this->db->where('p.idKuisioner',$kode);
         return $this->db->get()->result();
     }
 
@@ -244,13 +248,14 @@ class MKuisioner extends CI_Model {
         return $this->db->get()->result();
     }
 
-    public function listResponden($idKuisioner){
+    public function listResponden($idOrang,$idKuisioner){
         $this->db->select('*');
         
         // $this->db->where('idKuisione',$idCustomer);
         $this->db->from('pertanyaan p');
         $this->db->join('responden r','r.idpertanyaan=p.id');
-        $this->db->where('r.orangKe',$idKuisioner);
+        $this->db->where('r.orangKe',$idOrang);
+        $this->db->where('p.idKuisioner',$idKuisioner);
         return $this->db->get()->result();
     }
 

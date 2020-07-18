@@ -23,7 +23,7 @@
                                                 <tr>
                                                     <th scope="row"><?= $no++; ?></th>
                                                     <td><?= $row->nama ?></td>
-                                                    <td><a href="http://[::1]/asep/kuisioner/lihatResponden/<?= $row->orangKe?>" class="btn btn-secondary btn-sm active waves-effect waves-light" role="button" aria-pressed="true">Lihat Jawaban</a></td>
+                                                    <td><a href="http://[::1]/asep/kuisioner/lihatResponden/<?= $row->orangKe?>/<?= $this->uri->segment(3)?>" class="btn btn-secondary btn-sm active waves-effect waves-light" role="button" aria-pressed="true">Lihat Jawaban</a></td>
                                                    
                                                   
                                                                                                       

@@ -269,24 +269,26 @@ class Kuisioner extends CI_Controller {
         // $data['listPerson'] = $this->k->getListPerson($idCustomer);
 
         $data['listKuisioner'] = $this->k->getListKodeKuisioner($idCustomer)->result();
-        // $listKuisioner = $this->k->getListKodeKuisioner($idCustomer)->result();
-        // $totalListKuisioner = count ($listKuisioner);
+        $listKuisioner = $this->k->getListKodeKuisioner($idCustomer)->result();
+        $totalListKuisioner = count ($listKuisioner);
 
         // print_r ($listKuisioner); die;
         
 
         // $data['pearson'] = $this->k->getDataPearson();
 
-        // print_r($dataa); die;
+        // print_r($dataaa); die;
 
         // for ($x=0; $x<$totalListKuisioner; $x++){
-        //     $nilai = $listKuisioner[$x]->kodeKuisioner;
+        //     $nilai = $listKuisioner[$x]->id;
 
         //     $rhitung = $this->pearson($nilai);
         //     // return true;
 
         //     echo $rhitung; 
         // }
+
+        // die;
 
     
         $this->load->view('listKuisioner',$data);
@@ -299,9 +301,10 @@ class Kuisioner extends CI_Controller {
         $this->load->view('index');
         // $this->load->view('lihatResponden');
 
-        $idKuisioner = $this->uri->segment(3);
+        $idOrang = $this->uri->segment(3);
+        $idKuisioner = $this->uri->segment(4);
         // print_r($idKuisioner); die;
-        $data['listResponden'] = $this->k->listResponden($idKuisioner);
+        $data['listResponden'] = $this->k->listResponden($idOrang,$idKuisioner);
         $this->load->view('lihatResponden',$data);
 
         // print_r ($data); die;
@@ -329,43 +332,43 @@ class Kuisioner extends CI_Controller {
 
         $orangKe = 1;
         $total1 = ($this->k->getSkorByIDSoal($kode,$orangKe)->row(0,'array'));
-        $totalNilaiOrang1 = $total1['pilihan'];
+        $totalNilaiOrang1 = $total1['nilai'];
 
         $orangKe = 2;
         $total2 = ($this->k->getSkorByIDSoal($kode,$orangKe)->row(0,'array'));
-        $totalNilaiOrang2 = $total2['pilihan'];
+        $totalNilaiOrang2 = $total2['nilai'];
 
         $orangKe = 3;
         $total3 = ($this->k->getSkorByIDSoal($kode,$orangKe)->row(0,'array'));
-        $totalNilaiOrang3 = $total3['pilihan'];
+        $totalNilaiOrang3 = $total3['nilai'];
 
         $orangKe = 4;
         $total4 = ($this->k->getSkorByIDSoal($kode,$orangKe)->row(0,'array'));
-        $totalNilaiOrang4 = $total4['pilihan'];
+        $totalNilaiOrang4 = $total4['nilai'];
 
         $orangKe = 5;
         $total5 = ($this->k->getSkorByIDSoal($kode,$orangKe)->row(0,'array'));
-        $totalNilaiOrang5 = $total5['pilihan'];
+        $totalNilaiOrang5 = $total5['nilai'];
 
         $orangKe = 6;
         $total6 = ($this->k->getSkorByIDSoal($kode,$orangKe)->row(0,'array'));
-        $totalNilaiOrang6 = $total6['pilihan'];
+        $totalNilaiOrang6 = $total6['nilai'];
 
         $orangKe = 7;
         $total7 = ($this->k->getSkorByIDSoal($kode,$orangKe)->row(0,'array'));
-        $totalNilaiOrang7 = $total7['pilihan'];
+        $totalNilaiOrang7 = $total7['nilai'];
 
         $orangKe = 8;
         $total8 = ($this->k->getSkorByIDSoal($kode,$orangKe)->row(0,'array'));
-        $totalNilaiOrang8 = $total8['pilihan'];
+        $totalNilaiOrang8 = $total8['nilai'];
         
         $orangKe = 9;
         $total9 = ($this->k->getSkorByIDSoal($kode,$orangKe)->row(0,'array'));
-        $totalNilaiOrang9 = $total9['pilihan'];
+        $totalNilaiOrang9 = $total9['nilai'];
         
         $orangKe = 10;
         $total10 = ($this->k->getSkorByIDSoal($kode,$orangKe)->row(0,'array'));
-        $totalNilaiOrang10 = $total10['pilihan'];
+        $totalNilaiOrang10 = $total10['nilai'];
 
         $skorItemX = $totalNilaiOrang1+$totalNilaiOrang2+$totalNilaiOrang3+$totalNilaiOrang4+$totalNilaiOrang5+$totalNilaiOrang6+$totalNilaiOrang7+$totalNilaiOrang8+$totalNilaiOrang9+$totalNilaiOrang10;
 
@@ -373,43 +376,43 @@ class Kuisioner extends CI_Controller {
         
         $soalKe = 1;
         $totalItem1 = $this->k->getTotalItem($kode,$soalKe)->row(0,'array');
-        $getTotalItem1 = $totalItem1['pilihan'];
+        $getTotalItem1 = $totalItem1['nilai'];
 
         $soalKe = 2;
         $totalItem2 = $this->k->getTotalItem($kode,$soalKe)->row(0,'array');
-        $getTotalItem2 = $totalItem2['pilihan'];
+        $getTotalItem2 = $totalItem2['nilai'];
 
         $soalKe = 3;
         $totalItem3 = $this->k->getTotalItem($kode,$soalKe)->row(0,'array');
-        $getTotalItem3 = $totalItem3['pilihan'];
+        $getTotalItem3 = $totalItem3['nilai'];
 
         $soalKe = 4;
         $totalItem4 = $this->k->getTotalItem($kode,$soalKe)->row(0,'array');
-        $getTotalItem4 = $totalItem4['pilihan'];
+        $getTotalItem4 = $totalItem4['nilai'];
 
         $soalKe = 5;
         $totalItem5 = $this->k->getTotalItem($kode,$soalKe)->row(0,'array');
-        $getTotalItem5 = $totalItem5['pilihan'];
+        $getTotalItem5 = $totalItem5['nilai'];
 
         $soalKe = 6;
         $totalItem6 = $this->k->getTotalItem($kode,$soalKe)->row(0,'array');
-        $getTotalItem6 = $totalItem6['pilihan'];
+        $getTotalItem6 = $totalItem6['nilai'];
 
         $soalKe = 7;
         $totalItem7 = $this->k->getTotalItem($kode,$soalKe)->row(0,'array');
-        $getTotalItem7 = $totalItem7['pilihan'];
+        $getTotalItem7 = $totalItem7['nilai'];
 
         $soalKe = 8;
         $totalItem8 = $this->k->getTotalItem($kode,$soalKe)->row(0,'array');
-        $getTotalItem8 = $totalItem8['pilihan'];
+        $getTotalItem8 = $totalItem8['nilai'];
 
         $soalKe = 9;
         $totalItem9 = $this->k->getTotalItem($kode,$soalKe)->row(0,'array');
-        $getTotalItem9 = $totalItem9['pilihan'];
+        $getTotalItem9 = $totalItem9['nilai'];
 
         $soalKe = 10;
         $totalItem10 = $this->k->getTotalItem($kode,$soalKe)->row(0,'array');
-        $getTotalItem10 = $totalItem10['pilihan'];
+        $getTotalItem10 = $totalItem10['nilai'];
 
 
         // totalSkorItemX
@@ -417,7 +420,7 @@ class Kuisioner extends CI_Controller {
 
 
         $totalSubject = count($this->k->getTotalSubject($kode)->result());
-        // $getTotalSubject = $totalSubject['pilihan'];
+        // $getTotalSubject = $totalSubject['nilai'];
 
 
         // kita buat xy
@@ -531,96 +534,105 @@ class Kuisioner extends CI_Controller {
 
     public function pearson($nilai){
         $kode = $nilai;
+
+        // print_r ($kode); die;
         
         $orangKe = 1;
         $total1 = ($this->k->getSkorByIDSoal($kode,$orangKe)->row(0,'array'));
-        $totalNilaiOrang1 = $total1['pilihan'];
+        $totalNilaiOrang1 = $total1['nilai'];
+        // print_r ($totalNilaiOrang1); die;
 
         $orangKe = 2;
         $total2 = ($this->k->getSkorByIDSoal($kode,$orangKe)->row(0,'array'));
-        $totalNilaiOrang2 = $total2['pilihan'];
+        $totalNilaiOrang2 = $total2['nilai'];
 
         $orangKe = 3;
         $total3 = ($this->k->getSkorByIDSoal($kode,$orangKe)->row(0,'array'));
-        $totalNilaiOrang3 = $total3['pilihan'];
+        $totalNilaiOrang3 = $total3['nilai'];
 
         $orangKe = 4;
         $total4 = ($this->k->getSkorByIDSoal($kode,$orangKe)->row(0,'array'));
-        $totalNilaiOrang4 = $total4['pilihan'];
+        $totalNilaiOrang4 = $total4['nilai'];
 
         $orangKe = 5;
         $total5 = ($this->k->getSkorByIDSoal($kode,$orangKe)->row(0,'array'));
-        $totalNilaiOrang5 = $total5['pilihan'];
+        $totalNilaiOrang5 = $total5['nilai'];
 
         $orangKe = 6;
         $total6 = ($this->k->getSkorByIDSoal($kode,$orangKe)->row(0,'array'));
-        $totalNilaiOrang6 = $total6['pilihan'];
+        $totalNilaiOrang6 = $total6['nilai'];
 
         $orangKe = 7;
         $total7 = ($this->k->getSkorByIDSoal($kode,$orangKe)->row(0,'array'));
-        $totalNilaiOrang7 = $total7['pilihan'];
+        $totalNilaiOrang7 = $total7['nilai'];
 
         $orangKe = 8;
         $total8 = ($this->k->getSkorByIDSoal($kode,$orangKe)->row(0,'array'));
-        $totalNilaiOrang8 = $total8['pilihan'];
+        $totalNilaiOrang8 = $total8['nilai'];
         
         $orangKe = 9;
         $total9 = ($this->k->getSkorByIDSoal($kode,$orangKe)->row(0,'array'));
-        $totalNilaiOrang9 = $total9['pilihan'];
+        $totalNilaiOrang9 = $total9['nilai'];
         
         $orangKe = 10;
         $total10 = ($this->k->getSkorByIDSoal($kode,$orangKe)->row(0,'array'));
-        $totalNilaiOrang10 = $total10['pilihan'];
+        $totalNilaiOrang10 = $total10['nilai'];
 
         $skorItemX = $totalNilaiOrang1+$totalNilaiOrang2+$totalNilaiOrang3+$totalNilaiOrang4+$totalNilaiOrang5+$totalNilaiOrang6+$totalNilaiOrang7+$totalNilaiOrang8+$totalNilaiOrang9+$totalNilaiOrang10;
 
+        // print_r ($skorItemX); die;
         // ----- batas soal -------
         
         $soalKe = 1;
         $totalItem1 = $this->k->getTotalItem($kode,$soalKe)->row(0,'array');
-        $getTotalItem1 = $totalItem1['pilihan'];
-
+        $getTotalItem1 = $totalItem1['nilai'];
+        // print_r ($totalItem1); die;
+        
         $soalKe = 2;
         $totalItem2 = $this->k->getTotalItem($kode,$soalKe)->row(0,'array');
-        $getTotalItem2 = $totalItem2['pilihan'];
+        $getTotalItem2 = $totalItem2['nilai'];
 
         $soalKe = 3;
         $totalItem3 = $this->k->getTotalItem($kode,$soalKe)->row(0,'array');
-        $getTotalItem3 = $totalItem3['pilihan'];
+        $getTotalItem3 = $totalItem3['nilai'];
 
         $soalKe = 4;
         $totalItem4 = $this->k->getTotalItem($kode,$soalKe)->row(0,'array');
-        $getTotalItem4 = $totalItem4['pilihan'];
+        $getTotalItem4 = $totalItem4['nilai'];
 
         $soalKe = 5;
         $totalItem5 = $this->k->getTotalItem($kode,$soalKe)->row(0,'array');
-        $getTotalItem5 = $totalItem5['pilihan'];
+        $getTotalItem5 = $totalItem5['nilai'];
 
         $soalKe = 6;
         $totalItem6 = $this->k->getTotalItem($kode,$soalKe)->row(0,'array');
-        $getTotalItem6 = $totalItem6['pilihan'];
+        $getTotalItem6 = $totalItem6['nilai'];
 
         $soalKe = 7;
         $totalItem7 = $this->k->getTotalItem($kode,$soalKe)->row(0,'array');
-        $getTotalItem7 = $totalItem7['pilihan'];
+        $getTotalItem7 = $totalItem7['nilai'];
 
         $soalKe = 8;
         $totalItem8 = $this->k->getTotalItem($kode,$soalKe)->row(0,'array');
-        $getTotalItem8 = $totalItem8['pilihan'];
+        $getTotalItem8 = $totalItem8['nilai'];
 
         $soalKe = 9;
         $totalItem9 = $this->k->getTotalItem($kode,$soalKe)->row(0,'array');
-        $getTotalItem9 = $totalItem9['pilihan'];
+        $getTotalItem9 = $totalItem9['nilai'];
 
         $soalKe = 10;
         $totalItem10 = $this->k->getTotalItem($kode,$soalKe)->row(0,'array');
-        $getTotalItem10 = $totalItem10['pilihan'];
+        $getTotalItem10 = $totalItem10['nilai'];
 
         // totalSkorItemX
         $skorTotalY = $getTotalItem1+$getTotalItem2+$getTotalItem3+$getTotalItem4+$getTotalItem5+$getTotalItem6+$getTotalItem7+$getTotalItem8+$getTotalItem9+$getTotalItem10;
 
+        // print_r($skorTotalY); die;
+    
         $totalSubject = count($this->k->getTotalSubject($kode)->result());
-        // $getTotalSubject = $totalSubject['pilihan'];
+        // $getTotalSubject = $totalSubject['nilai'];
+
+        // print_r ($totalSubject); die;
 
 
         // kita buat xy
@@ -636,6 +648,8 @@ class Kuisioner extends CI_Controller {
         $xy10 = $totalNilaiOrang10 * $getTotalItem10;
 
         $totalxy = $xy1+$xy2+$xy3+$xy4+$xy5+$xy6+$xy7+$xy8+$xy9+$xy10;
+
+        // print_r ($totalxy); die;
 
         // menghitung x2
 
@@ -674,8 +688,9 @@ class Kuisioner extends CI_Controller {
 
         // kalkulasi sigma
         $sigmax = $skorItemX;
-
+        
         $sigmay = $skorTotalY;
+        // print_r ($sigmays); die;
 
         // $totalSubject = 20;
         // $totalxy = 101908;
@@ -739,12 +754,15 @@ class Kuisioner extends CI_Controller {
         // echo "Status: ".($status); die;
 
         $cekPearson = $this->k->cekPearson($kode);
+        // print_r ($cekPearson); die;
 
         if ($cekPearson){
             $statusPearson = "ada";
         }else{
             $statusPearson ="tidak ada";
         }
+
+        // print_r ($statusPearson); die;
 
         if ($statusPearson=="ada"){
             $this->k->updatePearson($dataa,$kode);
