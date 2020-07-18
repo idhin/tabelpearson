@@ -6,34 +6,26 @@
 <!-- Awal Isi -->
 <div class="card">
                                 <div class="card-body">
-                                    <h5 class="card-title">Berikut List Kuisioner yang Pernah Anda Buat</h5>
                                     <!-- <p>Use <code>.table-striped</code> to add zebra-striping to any table row within the <code>&lt;tbody&gt;</code>.</p> -->
                                     <div class="table-container">
                                         <table class="table table-striped">
                                             <thead>
                                                 <tr>
                                                     <th scope="col">No</th>
-                                                    <th scope="col">Judul</th>
-                                                    <th scope="col">Deskripsi</th>
-                                                    <th scope="col">Link</th>
+                                                    <th scope="col">Nama</th>
                                                     <th scope="col">Aksi</th>
+                                                   
+                                                    <!-- <th scope="col">Aksi</th> -->
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                               <?php $no=1; foreach ($listKuisioner as $row) { ?>
+                                               <?php $no=1; foreach ($listNamaResponden as $row) { ?>
                                                 <tr>
                                                     <th scope="row"><?= $no++; ?></th>
-                                                    <td><?= $row->judul_kuisioner ?></td>
-                                                 
-                                                    <td><?= $row->deskripsi ?></td>
-                                                    <td><?= base_url(); ?>user/share/<?=  $row->id ?></td>
-                                                    <td><a href="<?= base_url();?>kuisioner/lihatKuisioner/<?= $row->id ?>" class="btn btn-secondary btn-sm active" role="button" aria-pressed="true">Detail</a>
-                                                    
-                                                    <a href="<?=  base_url();?>kuisioner/lihatNamaResponden/<?= $row->id ?>" class="btn btn-secondary btn-sm active" role="button" aria-pressed="true">Lihat Responden</a>
-                                                    
-                                                    <!-- <a href="<?=  base_url();?>kuisioner/lihatHasil/<?= $row->id ?>" class="btn btn-secondary btn-sm active" role="button" aria-pressed="true">Lihat Hasil</a> -->
-                                                    <a href="<?=  base_url();?>kuisioner/hapus/<?= $row->id ?>" class="btn btn-secondary btn-sm active" role="button" aria-pressed="true">Hapus</a>
-                                                    </td>
+                                                    <td><?= $row->nama ?></td>
+                                                    <td><a href="http://[::1]/asep/kuisioner/lihatResponden/<?= $row->orangKe?>" class="btn btn-secondary btn-sm active waves-effect waves-light" role="button" aria-pressed="true">Lihat Jawaban</a></td>
+                                                   
+                                                  
                                                                                                       
                                                     <!-- <td><button type="button" href="google.com" class="btn btn-primary btn-xs waves-effect waves-light">Edit</button></td> -->
                                                 </tr>

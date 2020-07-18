@@ -120,7 +120,8 @@ class Kuisioner extends CI_Controller {
         // print_r ($id); die;
 
         $this->k->hapusIsiKuisioner($id);
-        redirect('kuisioner/lihatKuisioner/','refresh');
+        $referred_from = $this->session->userdata('referred_from'); 
+        redirect($referred_from, 'refresh');
     }
 
     
@@ -299,10 +300,26 @@ class Kuisioner extends CI_Controller {
         // $this->load->view('lihatResponden');
 
         $idKuisioner = $this->uri->segment(3);
+        // print_r($idKuisioner); die;
         $data['listResponden'] = $this->k->listResponden($idKuisioner);
         $this->load->view('lihatResponden',$data);
 
         // print_r ($data); die;
+    }
+
+
+    public function lihatNamaResponden(){
+        $this->load->view('header');
+        $this->load->view('sider');
+        $this->load->view('sideBarKiri');
+        $this->load->view('index');
+        // $this->load->view('lihatResponden');
+
+        $idKuisioner = $this->uri->segment(3);
+        $data['listNamaResponden'] = $this->k->getNamaResponden($idKuisioner);
+
+        // print_r($data); die;
+        $this->load->view('lihatNamaResponden',$data);
     }
 
     

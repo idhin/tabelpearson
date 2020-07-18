@@ -21,6 +21,18 @@ class MKuisioner extends CI_Model {
         return $this->db->get()->result();
     }   
 
+    public function getNamaResponden($idKuisioner){
+        $this->db->distinct();
+        $this->db->select('r.orangKe,r.nama');
+        $this->db->from('responden r');
+        $this->db->join('pertanyaan p','p.id=r.idpertanyaan');
+        $this->db->where('p.idKuisioner',$idKuisioner);
+        
+        // $this->db->order_by('kodeKuisioner');
+        // $this->db->group_by('kuisioner');
+        return $this->db->get()->result();
+    }
+
     public function getListPerson($idCustomer){
         $this->db->distinct();
         $this->db->select('k.judul,k.deskripsi,k.kodeKuisioner,p.rhitung,p.rtable,p.status');
@@ -57,13 +69,13 @@ class MKuisioner extends CI_Model {
     }
 
     public function hapusKuisioner($id){
-        $this->db->where('kodeKuisioner',$id);
+        $this->db->where('id',$id);
         $this->db->delete('kuisioner');
     }
 
     public function hapusIsiKuisioner($id){
         $this->db->where('id',$id);
-        $this->db->delete('kuisioner');
+        $this->db->delete('pertanyaan');
     }
 
     public function personDat($kode){
@@ -238,7 +250,7 @@ class MKuisioner extends CI_Model {
         // $this->db->where('idKuisione',$idCustomer);
         $this->db->from('pertanyaan p');
         $this->db->join('responden r','r.idpertanyaan=p.id');
-        $this->db->where('p.idKuisioner',$idKuisioner);
+        $this->db->where('r.orangKe',$idKuisioner);
         return $this->db->get()->result();
     }
 
