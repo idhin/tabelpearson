@@ -6,6 +6,10 @@ class MKuisioner extends CI_Model {
     public function tambagPertanyaan($data){
         $this->db->insert('pertanyaan',$data);
     }
+
+    public function tambahKuisioner($data){
+        $this->db->insert('kuisioner',$data);
+    }
     
     public function getListKuisioner($idCustomer){
         $this->db->distinct();
