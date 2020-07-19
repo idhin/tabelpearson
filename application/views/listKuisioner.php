@@ -1,4 +1,4 @@
-><!-- Left Sidebar -->
+<!-- Left Sidebar -->
 <div class="page-content">
 
 <div class="container-fluid">
@@ -6,7 +6,7 @@
 <!-- Awal Isi -->
 <div class="card">
                                 <div class="card-body">
-                                    <h5 class="card-title">Berikut List Kuisioner yang Pernah Anda Buat</h5>
+                                    <h5 class="card-title">Berikut Daftar Kuisioner yang Pernah Anda Buat</h5>
                                     <!-- <p>Use <code>.table-striped</code> to add zebra-striping to any table row within the <code>&lt;tbody&gt;</code>.</p> -->
                                     <div class="table-container">
                                         <table class="table table-striped">
@@ -27,14 +27,14 @@
                                                  
                                                     <td><?= $row->deskripsi ?></td>
                                                     <td><?= base_url(); ?>user/share/<?=  $row->id ?></td>
-                                                    <td><a href="<?= base_url();?>kuisioner/lihatKuisioner/<?= $row->id ?>" class="btn btn-secondary btn-sm active" role="button" aria-pressed="true">Detail</a>
+                                                    <td><a href="<?= base_url();?>kuisioner/lihatKuisioner/<?= $row->id ?>" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Detail</a>
                                                     
-                                                    <a href="<?=  base_url();?>kuisioner/lihatNamaResponden/<?= $row->id ?>" class="btn btn-secondary btn-sm active" role="button" aria-pressed="true">Lihat Responden</a>
+                                                    <a href="<?=  base_url();?>kuisioner/lihatNamaResponden/<?= $row->id ?>" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Lihat Responden</a>
                                                     
-                                                    <!-- <a href="<?=  base_url();?>kuisioner/lihatHasil/<?= $row->id ?>" class="btn btn-secondary btn-sm active" role="button" aria-pressed="true">Lihat Hasil</a> -->
-                                                    <a href="<?=  base_url();?>kuisioner/hapus/<?= $row->id ?>" class="btn btn-secondary btn-sm active" role="button" aria-pressed="true">Hapus</a>
-                                                    </td>
-                                                                                                      
+                                                    <!-- <a href="<?=  base_url();?>kuisioner/lihatHasil/<?= $row->id ?>" class="btn btn-info btn-sm active" role="button" aria-pressed="true">Lihat Hasil</a> -->
+                                                    <a href="" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Pearson</a>
+                                                    <a href="<?=  base_url();?>kuisioner/hapus/<?= $row->id ?>" class="btn btn-danger btn-sm active" role="button" aria-pressed="true">Hapus</a>
+                                                    </td>                                              
                                                     <!-- <td><button type="button" href="google.com" class="btn btn-primary btn-xs waves-effect waves-light">Edit</button></td> -->
                                                 </tr>
                                                <?php } ?>

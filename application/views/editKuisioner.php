@@ -6,8 +6,7 @@
 <!-- Awal Isi -->
 <div class="card">
                                 <div class="card-body">
-                                    <h5 class="card-title">Tambah Kuisioner </h5>
-                                    <p>Sep Deskripnya Edit Yak <code>&lt;Disini&gt;</code>s, <code>&lt;Isinya&gt;</code>aa, Diedit bagian <code>&lt;ini&gt;</code>nnyakk <code>.atuh</code> Mantap Semangat </p>
+                                    <h5 class="card-title">Edit Kuisioner </h5>
                                     <?= form_open('kuisioner/prosesEditKuisioner');?>
                                         <?php foreach ($editKuisioner as $s) { ?>
                                         <!-- <div class="form-group">
@@ -31,47 +30,47 @@
                                             
 
                                         <div class="form-group">
-                                            <label for="exampleFormControlInput1">Pertanyaan </label>
+                                            <label for="exampleFormControlInput1"> </label>
                                             <input type="text" class="form-control" value="<?= $s->pertanyaan?>"  name="pertanyaan" name="pertanyaan" id="exampleFormControlInput1" >
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="exampleFormControlInput1">Jawaban 1</label>
+                                            <label for="exampleFormControlInput1"></label>
                                             <input type="text" class="form-control" value="<?= $s->jawabanA?>"  name="jawaban1" id="exampleFormControlInput1" >
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="exampleFormControlInput1">Bobot Nilai Jawaban 1</label>
+                                            <label for="exampleFormControlInput1"></label>
                                             <input type="text" class="form-control" value="<?= $s->bobotA?>"  name="bobotA" id="exampleFormControlInput1" >
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="exampleFormControlInput1">Jawaban 2</label>
+                                            <label for="exampleFormControlInput1"></label>
                                             <input type="text" class="form-control" value="<?= $s->jawabanB?>"  name="jawaban2" id="exampleFormControlInput1" >
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="exampleFormControlInput1">Bobot Nilai Jawaban 2</label>
+                                            <label for="exampleFormControlInput1"></label>
                                             <input type="text" class="form-control" value="<?= $s->bobotB?>"  name="bobotB" id="exampleFormControlInput1" >
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="exampleFormControlInput1">Jawaban 3</label>
+                                            <label for="exampleFormControlInput1"></label>
                                             <input type="text" class="form-control" value="<?= $s->jawabanC?>"  name="jawaban3" id="exampleFormControlInput1" >
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="exampleFormControlInput1">Bobot Nilai Jawaban 3</label>
+                                            <label for="exampleFormControlInput1"></label>
                                             <input type="text" class="form-control" value="<?= $s->bobotC?>"  name="bobotC" id="exampleFormControlInput1" >
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="exampleFormControlInput1">Jawaban 4</label>
+                                            <label for="exampleFormControlInput1"></label>
                                             <input type="text" class="form-control" value="<?= $s->jawabanD?>"  name="jawaban4" id="exampleFormControlInput1" >
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="exampleFormControlInput1">Bobot Nilai Jawaban 4</label>
+                                            <label for="exampleFormControlInput1"></label>
                                             <input type="text" class="form-control" value="<?= $s->bobotD?>"   name="bobotD" id="exampleFormControlInput1" >
                                         </div>
 

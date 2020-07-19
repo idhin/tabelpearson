@@ -1,4 +1,4 @@
-><!-- Left Sidebar -->
+<!-- Left Sidebar -->
 <div class="page-content">
 
 <div class="container-fluid">
@@ -12,7 +12,7 @@
                                             <thead>
                                                 <tr>
                                                     <th scope="col">No</th>
-                                                    <th scope="col">Nama</th>
+                                                    <!-- <th scope="col">Nama</th> -->
                                                     <th scope="col">Pertanyaan</th>
                                                     <th scope="col">Jawaban</th>
                                                     <th scope="col">Nilai</th>
@@ -23,7 +23,7 @@
                                                <?php $no=1; foreach ($listResponden as $row) { ?>
                                                 <tr>
                                                     <th scope="row"><?= $no++; ?></th>
-                                                    <td><?= $row->nama ?></td>
+                                                    <!-- <td><?= $row->nama ?></td> -->
                                                     <td><?= $row->pertanyaan ?></td>
                                                     <td><?= $row->jawaban ?></td>
                                                     <td><?=  $row->nilai ?></td>

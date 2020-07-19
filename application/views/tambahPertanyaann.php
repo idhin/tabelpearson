@@ -1,4 +1,4 @@
-><!-- Left Sidebar -->
+<!-- Left Sidebar -->
 <div class="page-content">
 
 <div class="container-fluid">
@@ -27,7 +27,7 @@
 
                                         <div class="form-group">
                                             <label for="exampleFormControlInput1">Bobot Nilai Jawaban 1</label>
-                                            <input type="text" class="form-control" name="bobotA" id="exampleFormControlInput1" >
+                                            <input type="number" class="form-control" name="bobotA" id="exampleFormControlInput1" >
                                         </div>
 
                                         <div class="form-group">
@@ -37,7 +37,7 @@
 
                                         <div class="form-group">
                                             <label for="exampleFormControlInput1">Bobot Nilai Jawaban 2</label>
-                                            <input type="text" class="form-control" name="bobotB" id="exampleFormControlInput1" >
+                                            <input type="number" class="form-control" name="bobotB" id="exampleFormControlInput1" >
                                         </div>
 
                                         <div class="form-group">
@@ -47,17 +47,17 @@
 
                                         <div class="form-group">
                                             <label for="exampleFormControlInput1">Bobot Nilai Jawaban 3</label>
-                                            <input type="text" class="form-control" name="bobotC" id="exampleFormControlInput1" >
+                                            <input type="number" class="form-control" name="bobotC" id="exampleFormControlInput1" >
                                         </div>
 
                                         <div class="form-group">
                                             <label for="exampleFormControlInput1">Jawaban 4</label>
-                                            <input type="text" class="form-control" name="jawaban4" id="exampleFormControlInput1" >
+                                            <input type="number" class="form-control" name="jawaban4" id="exampleFormControlInput1" >
                                         </div>
 
                                         <div class="form-group">
                                             <label for="exampleFormControlInput1">Bobot Nilai Jawaban 4</label>
-                                            <input type="text" class="form-control" name="bobotD" id="exampleFormControlInput1" >
+                                            <input type="number" class="form-control" name="bobotD" id="exampleFormControlInput1" >
                                         </div>
 
 

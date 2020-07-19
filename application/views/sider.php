@@ -12,21 +12,13 @@
                             <span class="material-design-hamburger__layer"></span>
                         </a>
                     </section>
-                    <a class="navbar-brand" href="#">Admin Kuisioner</a>
+                    <a class="navbar-brand" href="<?= base_url(); ?>Kuisioner/">Admin Kuisioner</a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
 
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <form class="form-inline my-2 my-lg-0 search">
-                            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                            <label for="search" class="active"><i class="material-icons search-icon">search</i></label>
-                            <a href="#" id="close-search-input"><i class="material-icons">close</i></a>
-                        </form>
                         <ul class="navbar-nav ml-auto">
-                            <li class="d-md-block d-lg-none nav-item">
-                                <a class="nav-link search-link" href="#"><i class="material-icons">search</i></a>
-                            </li>
                             <a href="<?= base_url(); ?>user/logout"><button type="button" class="btn btn-danger waves-effect waves-light">Keluar</button></a>
                         </ul>
                     </div>

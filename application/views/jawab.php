@@ -99,7 +99,7 @@
 <div style="margin:auto;width:80%;">
 <!-- <button class="btn" style="background-color: #4b0082;color:#ffff">Kirim</button> -->
 
-<button type="submit" class="btn" style="background-color: #4b0082;color:#ffff">Kirim</button>
+<button type="submit" class="btn" style="background-color: #4b0082;color:#ffff">Submit</button>
 </div>
 
 <?= form_close(); ?>
