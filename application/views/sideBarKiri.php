@@ -10,7 +10,7 @@
                         </div>
                     </div>
                 </div>
-            </div><!-- Quick Search Results -->
+            </div><!-- Quick Searchh Results -->
             <div class="page-sidebar">
                 <div class="page-sidebar-inner">
                     <div class="page-sidebar-profile">
