@@ -11,6 +11,7 @@ class User extends CI_Controller {
 
 	public function daftar()
 	{
+		
 		$this->load->view('register');
 	}
 	
@@ -36,12 +37,21 @@ class User extends CI_Controller {
 			'password' => $password
 		);
 
-		// print_r($data); die;
-		$this->load->model('MUser');
-		$this->MUser->tambahAkun($data);
+		$cekEmail = $this->k->cekEmailTerdaftar($email);
 
-		echo "<script>alert('Pendaftaran Berhasil, Silahkan Login');</script>";
-		redirect('user/masuk','refresh');
+		if ($cekEmail){
+			echo "<script>alert('Email ini telah terdaftar! Silahkan gunakan email lain');</script>";
+			redirect('user/daftar','refresh');
+		}else{
+			// print_r($data); die;
+			$this->load->model('MUser');
+			$this->MUser->tambahAkun($data);
+
+			echo "<script>alert('Pendaftaran Berhasil, Silahkan Login');</script>";
+			redirect('user/masuk','refresh');
+		}
+
+		
 	}
 
 	public function share(){

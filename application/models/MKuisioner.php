@@ -95,6 +95,14 @@ class MKuisioner extends CI_Model {
         return $this->db->get();
     }
 
+
+    public function cekEmailTerdaftar($email){
+        $this->db->select('*');
+        $this->db->where('email',$email);
+        $this->db->from('user');
+        return $this->db->get()->result();
+    }
+
     public function getOrangTerakhir($id){
         $this->db->select('r.orangKe');
         $this->db->from('responden r');
