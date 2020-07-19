@@ -87,11 +87,11 @@ class MKuisioner extends CI_Model {
     }
 
     public function getSkorByIDSoal($kode,$orangKe){
-        $this->db->select_sum('r.nilai');
-        $this->db->from('responden r');
-        $this->db->join('pertanyaan p','r.idpertanyaan=p.id');
-        $this->db->where('p.idKuisioner',$kode);
-        $this->db->where('r.orangKe',$orangKe);
+        $this->db->select('nilai');
+        $this->db->from('responden');
+        // $this->db->join('pertanyaan p','r.idpertanyaan=p.id');
+        $this->db->where('idKuisioner',$kode);
+        $this->db->where('orangKe',$orangKe);
         return $this->db->get();
     }
 

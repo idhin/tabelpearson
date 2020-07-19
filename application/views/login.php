@@ -32,7 +32,7 @@
 
 				<?= form_open('user/masukDashboard'); ?>
 					<span class="login100-form-title">
-						Login
+						Silahkan Login
 					</span>
 					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
 						<input class="input100" type="text" name="email" placeholder="Email">

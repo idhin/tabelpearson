@@ -244,7 +244,7 @@ class User extends CI_Controller {
 				'jawaban' => $jawaban,
 				'orangKe' => $orangKe,
 				'soalKe' => $soalKe,
-                // 'kodeKuisioner' => $id,
+                'idKuisioner' => $id,
                 'idPertanyaan' => $h,
                 'nilai' => $nilai
             ];

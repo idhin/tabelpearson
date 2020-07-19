@@ -532,174 +532,53 @@ class Kuisioner extends CI_Controller {
 
     }
 
-    public function pearson($nilai){
-        $kode = $nilai;
+    public function pearson(){
+        $kode = 3;
 
-        // print_r ($kode); die;
-        
-        $orangKe = 1;
-        $total1 = ($this->k->getSkorByIDSoal($kode,$orangKe)->row(0,'array'));
-        $totalNilaiOrang1 = $total1['nilai'];
-        // print_r ($totalNilaiOrang1); die;
-
-        $orangKe = 2;
-        $total2 = ($this->k->getSkorByIDSoal($kode,$orangKe)->row(0,'array'));
-        $totalNilaiOrang2 = $total2['nilai'];
-
-        $orangKe = 3;
-        $total3 = ($this->k->getSkorByIDSoal($kode,$orangKe)->row(0,'array'));
-        $totalNilaiOrang3 = $total3['nilai'];
-
-        $orangKe = 4;
-        $total4 = ($this->k->getSkorByIDSoal($kode,$orangKe)->row(0,'array'));
-        $totalNilaiOrang4 = $total4['nilai'];
-
-        $orangKe = 5;
-        $total5 = ($this->k->getSkorByIDSoal($kode,$orangKe)->row(0,'array'));
-        $totalNilaiOrang5 = $total5['nilai'];
-
-        $orangKe = 6;
-        $total6 = ($this->k->getSkorByIDSoal($kode,$orangKe)->row(0,'array'));
-        $totalNilaiOrang6 = $total6['nilai'];
-
-        $orangKe = 7;
-        $total7 = ($this->k->getSkorByIDSoal($kode,$orangKe)->row(0,'array'));
-        $totalNilaiOrang7 = $total7['nilai'];
-
-        $orangKe = 8;
-        $total8 = ($this->k->getSkorByIDSoal($kode,$orangKe)->row(0,'array'));
-        $totalNilaiOrang8 = $total8['nilai'];
-        
-        $orangKe = 9;
-        $total9 = ($this->k->getSkorByIDSoal($kode,$orangKe)->row(0,'array'));
-        $totalNilaiOrang9 = $total9['nilai'];
-        
-        $orangKe = 10;
-        $total10 = ($this->k->getSkorByIDSoal($kode,$orangKe)->row(0,'array'));
-        $totalNilaiOrang10 = $total10['nilai'];
-
-        $skorItemX = $totalNilaiOrang1+$totalNilaiOrang2+$totalNilaiOrang3+$totalNilaiOrang4+$totalNilaiOrang5+$totalNilaiOrang6+$totalNilaiOrang7+$totalNilaiOrang8+$totalNilaiOrang9+$totalNilaiOrang10;
-
-        // print_r ($skorItemX); die;
-        // ----- batas soal -------
-        
-        $soalKe = 1;
-        $totalItem1 = $this->k->getTotalItem($kode,$soalKe)->row(0,'array');
-        $getTotalItem1 = $totalItem1['nilai'];
-        // print_r ($totalItem1); die;
-        
-        $soalKe = 2;
-        $totalItem2 = $this->k->getTotalItem($kode,$soalKe)->row(0,'array');
-        $getTotalItem2 = $totalItem2['nilai'];
-
-        $soalKe = 3;
-        $totalItem3 = $this->k->getTotalItem($kode,$soalKe)->row(0,'array');
-        $getTotalItem3 = $totalItem3['nilai'];
-
-        $soalKe = 4;
-        $totalItem4 = $this->k->getTotalItem($kode,$soalKe)->row(0,'array');
-        $getTotalItem4 = $totalItem4['nilai'];
-
-        $soalKe = 5;
-        $totalItem5 = $this->k->getTotalItem($kode,$soalKe)->row(0,'array');
-        $getTotalItem5 = $totalItem5['nilai'];
-
-        $soalKe = 6;
-        $totalItem6 = $this->k->getTotalItem($kode,$soalKe)->row(0,'array');
-        $getTotalItem6 = $totalItem6['nilai'];
-
-        $soalKe = 7;
-        $totalItem7 = $this->k->getTotalItem($kode,$soalKe)->row(0,'array');
-        $getTotalItem7 = $totalItem7['nilai'];
-
-        $soalKe = 8;
-        $totalItem8 = $this->k->getTotalItem($kode,$soalKe)->row(0,'array');
-        $getTotalItem8 = $totalItem8['nilai'];
-
-        $soalKe = 9;
-        $totalItem9 = $this->k->getTotalItem($kode,$soalKe)->row(0,'array');
-        $getTotalItem9 = $totalItem9['nilai'];
-
-        $soalKe = 10;
-        $totalItem10 = $this->k->getTotalItem($kode,$soalKe)->row(0,'array');
-        $getTotalItem10 = $totalItem10['nilai'];
-
-        // totalSkorItemX
-        $skorTotalY = $getTotalItem1+$getTotalItem2+$getTotalItem3+$getTotalItem4+$getTotalItem5+$getTotalItem6+$getTotalItem7+$getTotalItem8+$getTotalItem9+$getTotalItem10;
-
-        // print_r($skorTotalY); die;
-    
-        $totalSubject = count($this->k->getTotalSubject($kode)->result());
-        // $getTotalSubject = $totalSubject['nilai'];
+        $getTotalOrang = $this->k->getTotalSubject($kode)->result();
+        // $totalSubject = count($getTotalOrang);
 
         // print_r ($totalSubject); die;
 
-
-        // kita buat xy
-        $xy1 = $totalNilaiOrang1 * $getTotalItem1;
-        $xy2 = $totalNilaiOrang2 * $getTotalItem2;
-        $xy3 = $totalNilaiOrang3 * $getTotalItem3;
-        $xy4 = $totalNilaiOrang4 * $getTotalItem4;
-        $xy5 = $totalNilaiOrang5 * $getTotalItem5;
-        $xy6 = $totalNilaiOrang6 * $getTotalItem6;
-        $xy7 = $totalNilaiOrang7 * $getTotalItem7;
-        $xy8 = $totalNilaiOrang8 * $getTotalItem8;
-        $xy9 = $totalNilaiOrang9 * $getTotalItem9;
-        $xy10 = $totalNilaiOrang10 * $getTotalItem10;
-
-        $totalxy = $xy1+$xy2+$xy3+$xy4+$xy5+$xy6+$xy7+$xy8+$xy9+$xy10;
-
-        // print_r ($totalxy); die;
-
-        // menghitung x2
-
-        $x21 = pow($totalNilaiOrang1,2);
-        $x22 = pow($totalNilaiOrang2,2);
-        $x23 = pow($totalNilaiOrang3,2);
-        $x24 = pow($totalNilaiOrang4,2);
-        $x25 = pow($totalNilaiOrang5,2);
-        $x26 = pow($totalNilaiOrang6,2);
-        $x27 = pow($totalNilaiOrang7,2);
-        $x28 = pow($totalNilaiOrang8,2);
-        $x29 = pow($totalNilaiOrang9,2);
-        $x30 = pow($totalNilaiOrang10,2);
-
-
-        $totalx2 = $x21+$x22+$x23+$x24+$x25+$x26+$x27+$x28+$x29+$x30;
-        $sigmatotalx2 = pow($totalx2,2);
-
-
-        // menghitung y2
-        $y21 = pow($getTotalItem1,2);
-        $y22 = pow($getTotalItem2,2);
-        $y23 = pow($getTotalItem3,2);
-        $y24 = pow($getTotalItem4,2);
-        $y25 = pow($getTotalItem5,2);
-        $y26 = pow($getTotalItem6,2);
-        $y27 = pow($getTotalItem7,2);
-        $y28 = pow($getTotalItem8,2);
-        $y29 = pow($getTotalItem9,2);
-        $y30 = pow($getTotalItem10,2);
-
-        $totaly2 = $y21+$y22+$y23+$y24+$y25+$y26+$y27+$y28+$y29+$y30;
-        $sigmatotaly2 = pow($totaly2,2);
-        // print_r ($sigmatotaly2); die;
-
-
-        // kalkulasi sigma
-        $sigmax = $skorItemX;
+        $xOrang = 1;
         
-        $sigmay = $skorTotalY;
-        // print_r ($sigmays); die;
+        $skorItemX = 0;
+        foreach ($getTotalOrang as $totalOrang){
+            
+           
+            $orangKe = $xOrang;
+            
+            $getTotal = ($this->k->getSkorByIDSoal($kode,$orangKe)->result());
+            foreach ($getTotal as $xGetTotal){
+                $skorItemX = $xGetTotal->nilai."<br>";
+            }
 
-        // $totalSubject = 20;
-        // $totalxy = 101908;
-        // $sigmax = 1339;
-        // $sigmay = 1483;
-        // $totalx2 = 92659;
-        // $totaly2 = 113211;
-        // $sigmatotalx2 = 1792921;
-        // $sigmatotaly2 = 2199289;
+            echo $skorItemX;
+
+            die;
+
+            
+            $totalNilaiOrang = $total->nilai;
+            print_r($totalNilaiOrang); die;
+            // $xOrangtotalNilaiOrang 
+            // $skorItemX = $totalNilaiOrang+$skorItemX;
+            // // echo $xOrang."<br>";
+           
+        }
+        die;
+        echo $skorItemX;
+        die;
+        // print_r ($totalSubject); die;
+       
+
+        $totalSubject = 20;
+        $totalxy = 101908;
+        $sigmax = 1339;
+        $sigmay = 1483;
+        $totalx2 = 92659;
+        $totaly2 = 113211;
+        $sigmatotalx2 = 1792921;
+        $sigmatotaly2 = 2199289;
         
         // masuk kerumus
 
@@ -709,7 +588,7 @@ class Kuisioner extends CI_Controller {
 
         // sqrt(pow($totalSubject*$sigmax-($skorItemX)*($totalSubject*$skorTotalY))) ;
 
-        // print_r ($hasil);
+        print_r ($hasil); die;
         
         $rhitung = number_format($hasil, 3, '.', '');
         
