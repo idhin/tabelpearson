@@ -41,7 +41,7 @@
 
                                         <div class="form-group">
                                             <label for="exampleFormControlInput1"></label>
-                                            <input type="text" class="form-control" value="<?= $s->bobotA?>"  name="bobotA" id="exampleFormControlInput1" >
+                                            <input type="number" class="form-control" value="<?= $s->bobotA?>"  name="bobotA" id="exampleFormControlInput1" >
                                         </div>
 
                                         <div class="form-group">
@@ -51,7 +51,7 @@
 
                                         <div class="form-group">
                                             <label for="exampleFormControlInput1"></label>
-                                            <input type="text" class="form-control" value="<?= $s->bobotB?>"  name="bobotB" id="exampleFormControlInput1" >
+                                            <input type="number" class="form-control" value="<?= $s->bobotB?>"  name="bobotB" id="exampleFormControlInput1" >
                                         </div>
 
                                         <div class="form-group">
@@ -61,7 +61,7 @@
 
                                         <div class="form-group">
                                             <label for="exampleFormControlInput1"></label>
-                                            <input type="text" class="form-control" value="<?= $s->bobotC?>"  name="bobotC" id="exampleFormControlInput1" >
+                                            <input type="number" class="form-control" value="<?= $s->bobotC?>"  name="bobotC" id="exampleFormControlInput1" >
                                         </div>
 
                                         <div class="form-group">
@@ -71,7 +71,7 @@
 
                                         <div class="form-group">
                                             <label for="exampleFormControlInput1"></label>
-                                            <input type="text" class="form-control" value="<?= $s->bobotD?>"   name="bobotD" id="exampleFormControlInput1" >
+                                            <input type="number" class="form-control" value="<?= $s->bobotD?>"   name="bobotD" id="exampleFormControlInput1" >
                                         </div>
 
                                     <?php        } ?>

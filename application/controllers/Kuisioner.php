@@ -721,8 +721,9 @@ class Kuisioner extends CI_Controller {
         // print_r($data); die;
 
         $this->load->view('header');
-        // $this->load->view('sider');
-        // // $this->load->view('sideBarKiri');
+        $this->load->view('sider');
+        $this->load->view('sideBarKiri');
+        $this->load->view('index');
         $this->load->view('editKuisioner',$data);
     }
 
