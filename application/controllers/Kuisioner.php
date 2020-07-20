@@ -653,6 +653,14 @@ class Kuisioner extends CI_Controller {
 
     }
 
+    public function lihatPearson(){
+        $this->load->view('header');
+        $this->load->view('sider');
+        $this->load->view('sideBarKiri');
+        $this->load->view('index');
+        $this->load->view('pearson');
+    }
+
     public function lihatHasil(){
         $kode = $this->uri->segment(3);
 

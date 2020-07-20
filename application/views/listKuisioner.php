@@ -32,7 +32,7 @@
                                                     <a href="<?=  base_url();?>kuisioner/lihatNamaResponden/<?= $row->id ?>" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Lihat Responden</a>
                                                     
                                                     <!-- <a href="<?=  base_url();?>kuisioner/lihatHasil/<?= $row->id ?>" class="btn btn-info btn-sm active" role="button" aria-pressed="true">Lihat Hasil</a> -->
-                                                    <a href="" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Pearson</a>
+                                                    <a href="<?=  base_url();?>kuisioner/lihatPearson/<?= $row->id ?>" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Pearson</a>
                                                     <a href="<?=  base_url();?>kuisioner/hapus/<?= $row->id ?>" class="btn btn-danger btn-sm active" role="button" aria-pressed="true">Hapus</a>
                                                     </td>                                              
                                                     <!-- <td><button type="button" href="google.com" class="btn btn-primary btn-xs waves-effect waves-light">Edit</button></td> -->
