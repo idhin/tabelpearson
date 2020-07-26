@@ -548,14 +548,14 @@ class Kuisioner extends CI_Controller {
            
             $orangKe = $xOrang;
             
-            $getTotal = ($this->k->getSkorByIDSoal($kode,$orangKe)->result());
-            foreach ($getTotal as $xGetTotal){
-                $skorItemX = $xGetTotal->nilai."<br>";
-            }
+            $getXTotal = ($this->k->getSkorByIDSoal($kode,$orangKe)->row(0,'array'));
+            $getYTotal = ($this->k->getSkorYTotal($kode,$orangKe)->row(0,'array'));
 
-            echo $skorItemX;
+            $xTotal = $getXTotal['nilai'];
 
-            die;
+            // echo $getTotal['nilai'];
+
+            // die;
 
             
             $totalNilaiOrang = $total->nilai;
@@ -659,7 +659,97 @@ class Kuisioner extends CI_Controller {
         $this->load->view('sideBarKiri');
         $this->load->view('index');
         $this->load->view('pearson');
+
+        $idKuisioner = $this->uri->segment(3);
+        $pearson = $this->hitungPearson($idKuisioner);
+
+        print_r ($pearson); die;
+
     }
+
+    public function hitungPearson($idKuisioner){
+        // print_r($idKuisioner); die;
+
+        $jawabanResponden = $this->k->getJawabanResponden($idKuisioner)->result();
+        $getOrangKe = $this->k->getOrangKe($idKuisioner);
+        // print_r ($getOrangKe); die;
+
+        foreach ($getOrangKe as $x){
+            $orangKeberapa = $x->orangKe;
+            $getIdPertanyaan = $this->k->getIdPertanyaan($orangKeberapa,$idKuisioner)->result();
+                foreach ($getIdPertanyaan as $z){
+
+                    $idPertanyaan = $z->idPertanyaan;
+
+                    // echo $idPertanyaan;
+
+                    // print_r($idPertanyaan); die;
+                    $getXTotal = ($this->k->getSkorByIDSoal($idPertanyaan,$orangKeberapa,$idKuisioner)->row(0,'array'));
+                    $getYTotal = ($this->k->getSkorYTotal($idPertanyaan,$idKuisioner)->row(0,'array'));
+
+                    // // $getNilaiPerorang = ($this->k->getSkorByIDSoal($idPertanyaan,$orangKeberapa,$idKuisioner)->row(0,'array'));
+                    
+                    $xTotal = $getXTotal['nilai'];
+                    $yTotal = $getYTotal['nilai'];
+                    $totalSubject = count($this->k->getTotalSubject($idKuisioner)->result());
+                    $totalxy = ($xTotal*$yTotal);
+
+
+                    $xkuadrat = pow($xTotal,2);
+                    $sigmax = pow($xkuadrat,2);
+
+
+                    $ykuadrat = pow($yTotal,2);
+                    $sigmay = pow($ykuadrat,2);
+
+                    $hasil = ($totalSubject*$totalxy-($xTotal*$yTotal)) / sqrt(($totalSubject*$xkuadrat-$sigmax)*($totalSubject*$ykuadrat-$sigmay));
+                    $rhitung = number_format($hasil, 3, '.', '');
+
+
+                    if ($totalSubject<=3){
+                        $rtable=0.997;
+                    }elseif($totalSubject==4){
+                        $rtable=0.950;
+                    }elseif($totalSubject==5){
+                        $rtable=0.878;
+                    }elseif($totalSubject==6){
+                        $rtable=0.811;
+                    }elseif($totalSubject==7){
+                        $rtable=0.754;
+                    }elseif($totalSubject==8){
+                        $rtable=0.707;
+                    }elseif($totalSubject==9){
+                        $rtable=0.666;
+                    }elseif($totalSubject>=10){
+                        $rtable=0.632;
+                    }
+                    if ($rhitung>=$rtable){
+                        $status = "valid";
+                    }else{
+                        $status = "tidak valid";
+                    }
+
+                    if ($rhitung>=$rtable){
+                        $status = "valid";
+                    }else{
+                        $status = "tidak valid";
+                    }
+                    
+                    $data = [
+                        'idPertanyaan' => $idPertanyaan,
+                        'rhitung' => $rhitung,
+                        'rtable' => $rtable,
+                        'status' => $status
+                    ];
+                  return $data;
+                } 
+                
+        }
+
+
+            
+    }
+
 
     public function lihatHasil(){
         $kode = $this->uri->segment(3);

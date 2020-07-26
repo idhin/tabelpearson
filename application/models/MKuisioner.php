@@ -60,6 +60,16 @@ class MKuisioner extends CI_Model {
         return $this->db->get()->result();
     }
 
+    public function getPertanyaanAja(){
+        $this->db->distinct();
+        $this->db->select('idKuisioner');
+        // $this->db->where('idKuisioner',$kode);
+        $this->db->from('pertanyaan');
+        return $this->db->get()->result();
+    }
+
+    
+
     public function getPertanyaan($kode){
         // $this->db->distinct();
         $this->db->select('*');
@@ -86,21 +96,76 @@ class MKuisioner extends CI_Model {
         return $this->db->get();
     }
 
-    public function getSkorByIDSoal($kode,$orangKe){
-        $this->db->select('nilai');
+    public function getSkorYTotal($idPertanyaan,$idKuisioner){
+        $this->db->select_sum('nilai');
         $this->db->from('responden');
         // $this->db->join('pertanyaan p','r.idpertanyaan=p.id');
-        $this->db->where('idKuisioner',$kode);
-        $this->db->where('orangKe',$orangKe);
+        $this->db->where('idPertanyaan',$idPertanyaan);
+        // $this->db->where('orangKe',$orangKe);
         return $this->db->get();
     }
 
+    public function getSkorByIDSoal($idPertanyaan,$orangKe,$idKuisioner){
+        $this->db->select('nilai');
+        $this->db->from('responden');
+        // $this->db->join('pertanyaan p','r.idpertanyaan=p.id');
+        $this->db->where('idPertanyaan',$idPertanyaan);
+        $this->db->where('orangKe',$orangKe);
+        $this->db->where('idKuisioner',$idKuisioner);
+        return $this->db->get();
+    }
+
+    public function getJumlahPertanyaan($orangKe,$idKuisioner){
+        $this->db->select('nilai');
+        $this->db->from('responden');
+        // $this->db->join('pertanyaan p','r.idpertanyaan=p.id');
+        // $this->db->where('idPertanyaan',$idPertanyaan);
+        $this->db->where('orangKe',$orangKe);
+        $this->db->where('idKuisioner',$idKuisioner);
+        return $this->db->get();
+    }
+
+    public function getJawabanResponden($idKuisioner){
+        $this->db->select('*');
+        $this->db->from('responden');
+        $this->db->where('idKuisioner',$idKuisioner);
+        return $this->db->get();
+    }
+
+    
 
     public function cekEmailTerdaftar($email){
         $this->db->select('*');
         $this->db->where('email',$email);
         $this->db->from('user');
         return $this->db->get()->result();
+    }
+
+
+    public function getOrangKe($idKuisioner){
+        $this->db->distinct();
+        $this->db->select('orangKe');
+        $this->db->where('idKuisioner',$idKuisioner);
+        $this->db->from('responden');
+        return $this->db->get()->result();
+    }
+
+    public function getNilaiResponden($orangKeBerapa,$idKuisioner,$idPertanyaan){
+        $this->db->distinct('idPertanyaan');
+        $this->db->select('nilai');
+        $this->db->where('orangKe',$orangKeBerapa);
+        $this->db->where('idKuisioner',$idKuisioner);
+        $this->db->where('idPertanyaan',$idPertanyaan);
+        $this->db->from('responden');
+        return $this->db->get();
+    }
+
+    public function getIdPertanyaan($orangKeBerapa,$idKuisioner){
+        $this->db->select('idPertanyaan');
+        $this->db->where('orangKe',$orangKeBerapa);
+        $this->db->where('idKuisioner',$idKuisioner);
+        $this->db->from('responden');
+        return $this->db->get();
     }
 
     public function getOrangTerakhir($id){
