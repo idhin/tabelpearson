@@ -6,7 +6,14 @@
 <!-- Awal Isi -->
 <div class="card">
                                 <div class="card-body">
-                                    <h5 class="card-title">Tambah Pertanyaan</h5>
+                                <div class="row">
+                                        <div class="col-8">
+                                            <h5 class="card-title">Tambah Pertanyaan | Soal Ke <?php echo $total+1; ?></h5> 
+                                        </div>
+                                        <div class="col-4">
+                                            <button class="btn btn-primary" style="float:right" onclick="window.open('http://[::1]/tabelpearson/kuisioner/preview/<?php echo $id; ?>')">Preview</button>
+                                        </div>                                                       
+                                    </div>
                                     <?= form_open('kuisioner/prosesPertanyaann');?>
                                  
                                         <div class="form-group">

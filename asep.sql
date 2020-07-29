@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jul 17, 2020 at 06:32 PM
+-- Generation Time: Jul 26, 2020 at 04:52 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.31
 
@@ -39,7 +39,7 @@ CREATE TABLE `kuisioner` (
 --
 
 INSERT INTO `kuisioner` (`id`, `iduser`, `judul_kuisioner`, `deskripsi`) VALUES
-(3, 2, 'nanya dong', 'nanya ah');
+(4, 2, 'telkom university', 'telkom university adalah suatu universitas');
 
 -- --------------------------------------------------------
 
@@ -49,7 +49,7 @@ INSERT INTO `kuisioner` (`id`, `iduser`, `judul_kuisioner`, `deskripsi`) VALUES
 
 CREATE TABLE `pearson` (
   `id` int(11) NOT NULL,
-  `idkuesioner` int(11) NOT NULL,
+  `idKuisioner` int(11) NOT NULL,
   `rtable` float NOT NULL,
   `thitung` float NOT NULL,
   `status` varchar(500) NOT NULL
@@ -80,12 +80,9 @@ CREATE TABLE `pertanyaan` (
 --
 
 INSERT INTO `pertanyaan` (`id`, `idKuisioner`, `pertanyaan`, `jawabanA`, `jawabanB`, `jawabanC`, `jawabanD`, `bobotA`, `bobotB`, `bobotC`, `bobotD`) VALUES
-(1, 3, 'Siapa Nama Presiden', 'Jokowi', 'Jokowa', 'Joko', 'Jakahehe', 10, 8, 5, 2),
-(2, 3, 'Siapa Nama Presiden Cewek', 'Mega', 'Megawar', 'Megawati', 'Meg', 5, 8, 10, 2),
-(3, 3, 'xxx', 'xxx', 'xsxs', 'ssds', 'sdsd', 12, 12, 12, 12),
-(4, 3, 'kansaskas', 'jnn', 'bdhbfd', 'fg', 'sdsjd', 88, 9, 81, 12),
-(5, 3, 'kxmnk', 'ksdksd', 'kmkm', 'mlsd', 'kmdfkf', 12, 31, 53, 99),
-(6, 3, 'qqqqqqqq6', 'xsxz', 'sxsx', 'dscd', 'gfg', 12, 1212, 3, 66);
+(7, 4, 'Apakah telkom sangat membantu?', 'sangat membantu', 'membantu', 'tidak membantu', 'sangat tidak membantu', 4, 3, 2, 1),
+(8, 4, 'apakah kamu setuju jika telkom memberikan diskon bpp ?', 'setuju banget', 'setuju', 'tidak setuju ', 'sangat tidak setuju', 4, 3, 2, 1),
+(9, 4, 'apakah kamu setuju jika telkom memberikan diskon ktm ?', 'sangat setuju', 'setuju', 'tidak setuju ', 'sangat tidak setuju', 4, 3, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -96,6 +93,7 @@ INSERT INTO `pertanyaan` (`id`, `idKuisioner`, `pertanyaan`, `jawabanA`, `jawaba
 CREATE TABLE `responden` (
   `id` int(11) NOT NULL,
   `idpertanyaan` int(11) NOT NULL,
+  `idKuisioner` int(11) NOT NULL,
   `nama` varchar(500) NOT NULL,
   `email` varchar(500) NOT NULL,
   `nilai` int(11) NOT NULL,
@@ -108,13 +106,10 @@ CREATE TABLE `responden` (
 -- Dumping data for table `responden`
 --
 
-INSERT INTO `responden` (`id`, `idpertanyaan`, `nama`, `email`, `nilai`, `jawaban`, `orangKe`, `soalKe`) VALUES
-(11, 1, 'Asep Sutrisna', 'asep@hahahah.com', 10, 'Jokowi', 1, 1),
-(12, 2, 'Asep Sutrisna', 'asep@hahahah.com', 10, 'Megawati', 1, 2),
-(13, 3, 'Asep Sutrisna', 'asep@hahahah.com', 12, 'xsxs', 1, 3),
-(14, 4, 'Asep Sutrisna', 'asep@hahahah.com', 81, 'fg', 1, 4),
-(15, 5, 'Asep Sutrisna', 'asep@hahahah.com', 31, 'kmkm', 1, 5),
-(16, 6, 'Asep Sutrisna', 'asep@hahahah.com', 66, 'gfg', 1, 6);
+INSERT INTO `responden` (`id`, `idpertanyaan`, `idKuisioner`, `nama`, `email`, `nilai`, `jawaban`, `orangKe`, `soalKe`) VALUES
+(20, 7, 4, 'Dadang Sudadang', 'dadang@dadang.com', 1, 'sangat tidak membantu', 1, 1),
+(21, 8, 4, 'Dadang Sudadang', 'dadang@dadang.com', 1, 'sangat tidak setuju', 1, 2),
+(22, 9, 4, 'Dadang Sudadang', 'dadang@dadang.com', 1, 'sangat tidak setuju', 1, 3);
 
 -- --------------------------------------------------------
 
@@ -180,7 +175,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `kuisioner`
 --
 ALTER TABLE `kuisioner`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `pearson`
@@ -192,13 +187,13 @@ ALTER TABLE `pearson`
 -- AUTO_INCREMENT for table `pertanyaan`
 --
 ALTER TABLE `pertanyaan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `responden`
 --
 ALTER TABLE `responden`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `user`

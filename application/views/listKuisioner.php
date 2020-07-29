@@ -20,6 +20,17 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                            <?php if($totalKusioner < 1 ){
+                                               echo "<tr>
+                                               <th></th>
+                                               <th></th>
+                                               <th>Anda Belum membuat kuisioner</th>
+                                                <th></th>
+                                                <th></th>
+                                                </tr>";
+                                            }else{ ?>
+
+                                            
                                                <?php $no=1; foreach ($listKuisioner as $row) { ?>
                                                 <tr>
                                                     <th scope="row"><?= $no++; ?></th>
@@ -37,7 +48,7 @@
                                                     </td>                                              
                                                     <!-- <td><button type="button" href="google.com" class="btn btn-primary btn-xs waves-effect waves-light">Edit</button></td> -->
                                                 </tr>
-                                               <?php } ?>
+                                               <?php } }?>
                                             </tbody>
                                         </table>       
                                     </div>

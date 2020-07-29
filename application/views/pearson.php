@@ -6,7 +6,18 @@
 <!-- Awal Isi -->
 <div class="card">
                                 <div class="card-body">
-                                    <h5 class="card-title">Tabel Pearson</h5>
+                                <div class="row">
+                                        <div class="col-8">
+                                        <h5 class="card-title">Tabel Pearson</h5>
+                                        </div>
+                                        <?php if(count($listPearson) == 0){ ?>
+                                        <div class="col-4">
+                                            
+                                            <button class="btn btn-primary" style="float:right" onclick="window.open('http://[::1]/tabelpearson/kuisioner/hitungP/<?php echo $id; ?>')">Kalkulasi Pearson</button>
+                                        </div>       
+                                        <?php }?>                                         
+                                    </div>
+                                    
                                     <!-- <p>Use <code>.table-striped</code> to add zebra-striping to any table row within the <code>&lt;tbody&gt;</code>.</p> -->
                                     <div class="table-container">
                                         <table class="table table-striped">
@@ -20,17 +31,23 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                               
+                                                <?php if(count($listPearson) == 0){
+                                                
+                                                echo "<td>Tabel Pearson Belum Di Kalkulasi</td>";
+                                                }else{
+
+                                                $no=1; foreach ($listPearson as $row) { ?>
+
                                                 <tr>
-                                                    <th></th>
-                                                    <td></td>
+                                                    <th scope="row"><?php echo $no++; ?></th>
+                                                    <td>Pertanyaan ke-<?php echo $row->idPertanyaan; ?></td>
                                                  
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>                                              
+                                                    <td><?php echo $row->thitung; ?></td>
+                                                    <td><?php echo $row->rtable ?></td>
+                                                    <td><?php echo $row->status ?></td>                                              
                                                     <!-- <td><button type="button" href="google.com" class="btn btn-primary btn-xs waves-effect waves-light">Edit</button></td> -->
                                                 </tr>
-                                               
+                                               <?php } } ?>
                                             </tbody>
                                         </table>       
                                     </div>

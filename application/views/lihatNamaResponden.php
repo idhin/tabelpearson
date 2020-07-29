@@ -1,4 +1,4 @@
-><!-- Left Sidebar -->
+<!-- Left Sidebar -->
 <div class="page-content">
 
 <div class="container-fluid">

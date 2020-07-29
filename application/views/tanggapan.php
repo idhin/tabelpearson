@@ -32,7 +32,7 @@
 <div style="margin:auto;width:80%;background-color:#ffff;border-radius:5px;">
 <div style="background-color:#4b0082;width:100%;padding-bottom:15px;border-top-left-radius:5px;border-top-right-radius:5px;"></div>
 <div style="padding-left:20px;padding-top:20px;padding-bottom:10px;padding-right:20px;">
-<h1>Judul Kuesioner</h1>
+<h1><?php echo $judul->judul_kuisioner;?></h1>
 <p>Terima Kasih Sudah Memberikan Tanggapan Pada Kuesioner Ini</p>
 </div>
 </div>

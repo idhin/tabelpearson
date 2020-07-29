@@ -22,6 +22,66 @@ class Kuisioner extends CI_Controller {
         $this->load->view('sideBarKiri');
         $this->load->view('index');
     }
+    public function hitungP(){
+        $id = $this->uri->segment(3);
+        $n=  $this->k->getTotalResponden($id);
+        $tP = $this->k->totPertanyaan($id);
+
+        for($i=1;$i<=count($tP);$i++){
+            $totalX = $this->k->getTotalX($id,$i);
+            $totalX2 = $this->k->getTotalX2($id,$i);
+            $totalY = $this->k->getTotalY($id);
+            $totalY2 = $this->k->getTotalY2($id);
+            $totalXY= $this->k->getTotalXY($id,$i);
+            $rHitungatas = $n*$totalXY - $totalX*$totalY;
+            $rHitungbawahkiri = ($n*$totalX2 - $totalX*$totalX);
+            $rHitungbawahkanan = ($n*$totalY2 - $totalY*$totalY);
+            $rHitungbawah = sqrt($rHitungbawahkiri*$rHitungbawahkanan);
+            if($rHitungatas !=0){
+                $rHitung = $rHitungatas/$rHitungbawah;
+            }else{
+                $rHitung = 0;
+            }
+            
+            $rTabel= array();
+            $rTabel[3]=0.997;$rTabel[4]=0.950;$rTabel[5]=0.878;$rTabel[6]=0.811;$rTabel[7]=0.754;$rTabel[8]=0.707;$rTabel[9]=0.666;$rTabel[10]=0.632;$rTabel[11]=0.602;$rTabel[12]=0.576;$rTabel[13]=0.553;$rTabel[14]=0.532;$rTabel[15]=0.514;$rTabel[16]=0.497;$rTabel[17]=0.482;$rTabel[18]=0.468;$rTabel[19]=0.456;$rTabel[20]=0.444;
+            if($rHitung > $rTabel[$n]){
+                $status = "Valid";
+            }else{
+                $status =  "Tidak Valid";
+            }
+            $data= array('idKuisioner'=>$id,'idPertanyaan'=>$i,'rtable'=>$rTabel[$n],'thitung'=>$rHitung,'status'=>$status);
+            $this->k->tambahPearson($data);
+           
+        }
+        redirect($_SERVER['HTTP_REFERER']);
+        // print_r($rTabel[$n]);
+        // echo $totalXY[2];
+    }
+    // public function hitungPA(){
+    //     $id = $this->uri->segment(3);
+    //     $n=  $this->k->getTotalResponden($id);
+    //     $totalX = $this->k->getTotalX($id,1);
+    //     $totalX2 = $this->k->getTotalX2($id,1);
+    //     $totalY = $this->k->getTotalY($id);
+    //     $totalY2 = $this->k->getTotalY2($id);
+    //     $totalXY= $this->k->getTotalXY($id,1);
+    //     $rHitungatas = $n*$totalXY - $totalX*$totalY;
+    //     $rHitungbawahkiri = ($n*$totalX2 - $totalX*$totalX);
+    //     $rHitungbawahkanan = ($n*$totalY2 - $totalY*$totalY);
+    //     $rHitungbawah = sqrt($rHitungbawahkiri*$rHitungbawahkanan);
+    //     $rHitung = $rHitungatas/$rHitungbawah;
+    //     $rTabel= array();
+    //     $rTabel[3]=0.997;$rTabel[4]=0.950;$rTabel[5]=0.878;$rTabel[6]=0.811;$rTabel[7]=0.754;$rTabel[8]=0.707;$rTabel[9]=0.666;$rTabel[10]=0.632;$rTabel[11]=0.602;$rTabel[12]=0.576;$rTabel[13]=0.553;$rTabel[14]=0.532;$rTabel[15]=0.514;$rTabel[16]=0.497;$rTabel[17]=0.482;$rTabel[18]=0.468;$rTabel[19]=0.456;$rTabel[20]=0.444;
+    //     if($rHitung > $rTabel[$n]){
+    //         echo "Valid";
+    //     }else{
+    //         echo "Tidak Valid";
+    //     }
+   
+    //     // print_r($rTabel[$n]);
+    //     // echo $totalXY[2];
+    // }
     
     public function tambahKuisioner(){
         $this->load->view('header');
@@ -32,19 +92,27 @@ class Kuisioner extends CI_Controller {
     }
 
     public function tambahPertanyaan(){
+        $id = $this->uri->segment(3);
+        $p = $this->k->getTotalPertanyaan($id);
+        $data['total']=$p;
+        $data['id']=$id;
         $this->load->view('header');
         $this->load->view('sider');
         $this->load->view('sideBarKiri');
         $this->load->view('index');
-        $this->load->view('tambahPertanyaan');
+        $this->load->view('tambahPertanyaan',$data);
     }
 
     public function tambahPertanyaann(){
+        $id = $this->uri->segment(3);
+        $p = $this->k->getTotalPertanyaan($id);
+        $data['total']=$p;
+        $data['id']=$id;
         $this->load->view('header');
         $this->load->view('sider');
         $this->load->view('sideBarKiri');
         $this->load->view('index');
-        $this->load->view('tambahPertanyaann');
+        $this->load->view('tambahPertanyaann',$data);
     }
 
     public function tambahKuisionerr(){
@@ -271,6 +339,7 @@ class Kuisioner extends CI_Controller {
         $data['listKuisioner'] = $this->k->getListKodeKuisioner($idCustomer)->result();
         $listKuisioner = $this->k->getListKodeKuisioner($idCustomer)->result();
         $totalListKuisioner = count ($listKuisioner);
+        $data['totalKusioner'] = $totalListKuisioner;
 
         // print_r ($listKuisioner); die;
         
@@ -654,16 +723,19 @@ class Kuisioner extends CI_Controller {
     }
 
     public function lihatPearson(){
+        $id = $this->uri->segment(3);
+        $data['listPearson'] = $this->k->lihatPearson($id);
+        $data['id'] = $id;
         $this->load->view('header');
         $this->load->view('sider');
         $this->load->view('sideBarKiri');
         $this->load->view('index');
-        $this->load->view('pearson');
+        $this->load->view('pearson',$data);
 
-        $idKuisioner = $this->uri->segment(3);
-        $pearson = $this->hitungPearson($idKuisioner);
+        // $idKuisioner = $this->uri->segment(3);
+        // $pearson = $this->hitungPearson($idKuisioner);
 
-        print_r ($pearson); die;
+        // print_r ($pearson); die;
 
     }
 
@@ -800,6 +872,19 @@ class Kuisioner extends CI_Controller {
 
         $this->load->view('header');
         $this->load->view('isiKuisioner',$data);
+    }
+
+    public function preview(){
+        $kode = $this->uri->segment(3);
+
+		$data['pertanyaan'] = $this->k->getKuisionerByIDDD($kode);
+		$data['judul'] = $this->k->getJudulKuisioner($kode);
+
+		$this->load->view('header');
+
+		// print_r ($data); die;
+		$this->load->view('preview',$data);
+        // $this->load->view('isiKuisioner',$data);
     }
 
     public function editKuisioner(){

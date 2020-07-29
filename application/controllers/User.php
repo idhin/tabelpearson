@@ -65,7 +65,8 @@ class User extends CI_Controller {
 		// print_r ($data); die;
 		$this->load->view('jawab',$data);
         // $this->load->view('isiKuisioner',$data);
-    }
+	}
+	
 
 	public function masukDashboard(){
 		$email = $this->input->post('email');
@@ -264,13 +265,20 @@ class User extends CI_Controller {
 
 		$message = "Sukses Menjawab Pertanyaan ";
         echo "<script type='text/javascript'>alert('$message');</script>";
-        redirect('user/share/'.$id,'refresh');	
+        redirect('user/tanggapan/'.$id);	
 
 		
 		
 		// print_r($jawaban); die;
 		
 
+	}
+
+	public function tanggapan(){
+		$id = $this->uri->segment(3);
+		$data['pertanyaan'] = $this->k->getKuisionerByIDDD($id);
+		$data['judul'] = $this->k->getJudulKuisioner($id);
+		$this->load->view('tanggapan',$data);
 	}
 
 	public function jawab(){
