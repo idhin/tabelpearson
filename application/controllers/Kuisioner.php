@@ -44,7 +44,21 @@ class Kuisioner extends CI_Controller {
             }
             
             $rTabel= array();
-            $rTabel[3]=0.997;$rTabel[4]=0.950;$rTabel[5]=0.878;$rTabel[6]=0.811;$rTabel[7]=0.754;$rTabel[8]=0.707;$rTabel[9]=0.666;$rTabel[10]=0.632;$rTabel[11]=0.602;$rTabel[12]=0.576;$rTabel[13]=0.553;$rTabel[14]=0.532;$rTabel[15]=0.514;$rTabel[16]=0.497;$rTabel[17]=0.482;$rTabel[18]=0.468;$rTabel[19]=0.456;$rTabel[20]=0.444;
+            $rTabel[3]=0.997;$rTabel[4]=0.950;$rTabel[5]=0.878;$rTabel[6]=0.811;$rTabel[7]=0.754;$rTabel[8]=0.707;$rTabel[9]=0.666;$rTabel[10]=0.632;
+            $rTabel[11]=0.602;$rTabel[12]=0.576;$rTabel[13]=0.553;$rTabel[14]=0.532;$rTabel[15]=0.514;$rTabel[16]=0.497;$rTabel[17]=0.482;$rTabel[18]=0.468;$rTabel[19]=0.456;$rTabel[20]=0.444;
+            $rTabel[21]=0.433;$rTabel[22]=0.432;$rTabel[23]=0.413;$rTabel[24]=0.404;$rTabel[25]=0.396;$rTabel[26]=0.388;$rTabel[27]=0.381;$rTabel[28]=0.374;$rTabel[29]=0.367;$rTabel[30]=0.361;
+            $rTabel[31]=0.355;$rTabel[32]=0.349;$rTabel[33]=0.344;$rTabel[34]=0.339;$rTabel[35]=0.334;$rTabel[36]=0.329;$rTabel[37]=0.325;$rTabel[38]=0.320;$rTabel[39]=0.316;$rTabel[40]=0.312;
+            $rTabel[41]=0.308;$rTabel[42]=0.304;$rTabel[43]=0.301;$rTabel[44]=0.297;$rTabel[45]=0.294;$rTabel[46]=0.291;$rTabel[47]=0.288;$rTabel[48]=0.284;$rTabel[49]=0.281;$rTabel[50]=0.279;
+            $rTabel[51]=0.279;$rTabel[52]=0.279;$rTabel[53]=0.279;$rTabel[54]=0.279;$rTabel[55]=0.266;$rTabel[56]=0.266;$rTabel[57]=0.266;$rTabel[58]=0.266;$rTabel[59]=0.266;$rTabel[60]=0.254;
+            $rTabel[61]=0.254;$rTabel[62]=0.254;$rTabel[63]=0.254;$rTabel[64]=0.254;$rTabel[65]=0.244;$rTabel[66]=0.244;$rTabel[67]=0.244;$rTabel[68]=0.244;$rTabel[69]=0.244;$rTabel[70]=0.235;
+            $rTabel[71]=0.235;$rTabel[72]=0.235;$rTabel[73]=0.235;$rTabel[74]=0.235;$rTabel[75]=0.227;$rTabel[76]=0.227;$rTabel[77]=0.227;$rTabel[78]=0.227;$rTabel[79]=0.227;$rTabel[80]=0.220;
+            $rTabel[81]=0.220;$rTabel[82]=0.220;$rTabel[83]=0.220;$rTabel[84]=0.220;$rTabel[85]=0.213;$rTabel[86]=0.213;$rTabel[87]=0.213;$rTabel[88]=0.213;$rTabel[89]=0.213;$rTabel[90]=0.207;
+            $rTabel[91]=0.207;$rTabel[92]=0.207;$rTabel[93]=0.207;$rTabel[94]=0.207;$rTabel[95]=0.202;$rTabel[96]=0.202;$rTabel[97]=0.202;$rTabel[98]=0.202;$rTabel[99]=0.202;$rTabel[100]=0.195;
+            $rTabel[101]=0.195;$rTabel[102]=0.195;$rTabel[103]=0.195;$rTabel[104]=0.195;$rTabel[105]=0.195;$rTabel[106]=0.195;$rTabel[107]=0.195;$rTabel[108]=0.195;$rTabel[109]=0.195;$rTabel[110]=0.195;
+            $rTabel[111]=0.195;$rTabel[112]=0.195;$rTabel[113]=0.195;$rTabel[114]=0.195;$rTabel[115]=0.195;$rTabel[116]=0.195;$rTabel[117]=0.195;$rTabel[118]=0.195;$rTabel[119]=0.195;$rTabel[120]=0.195;
+            $rTabel[121]=0.195;$rTabel[122]=0.195;$rTabel[123]=0.195;$rTabel[124]=0.195;$rTabel[125]=0.176;$rTabel[126]=0.176;$rTabel[127]=0.176;$rTabel[128]=0.176;$rTabel[129]=0.176;$rTabel[130]=0.176;
+            $rTabel[131]=0.176;$rTabel[132]=0.176;$rTabel[133]=0.176;$rTabel[134]=0.176;$rTabel[135]=0.176;$rTabel[136]=0.176;$rTabel[137]=0.176;$rTabel[138]=0.176;$rTabel[139]=0.176;$rTabel[140]=0.176;
+            $rTabel[141]=0.176;$rTabel[142]=0.176;$rTabel[143]=0.176;$rTabel[144]=0.176;$rTabel[145]=0.176;$rTabel[146]=0.176;$rTabel[147]=0.176;$rTabel[148]=0.176;$rTabel[149]=0.176;$rTabel[150]=0.159;
             if($rHitung > $rTabel[$n]){
                 $status = "Valid";
             }else{
