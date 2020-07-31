@@ -8,6 +8,7 @@
                                 <div class="card-body">
                                     <h5 class="card-title">Berikut Pertanyaan Yang Sudah Anda Buat   </h5>
                                     <a href="<?= base_url();?>kuisioner/tambahPertanyaann/<?= $this->uri->segment(3); ?>" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Tambah Pertanyaan</a>
+                                    <a href="<?= base_url();?>kuisioner/lihatGrafik/<?= $this->uri->segment(3); ?>" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Lihat Grafik</a>
                                        <br>             <br>
                                     <!-- <p>Use <code>.table-striped</code> to add zebra-striping to any table row within the <code>&lt;tbody&gt;</code>.</p> -->
                                     <div class="table-container">
