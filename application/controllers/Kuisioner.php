@@ -867,9 +867,24 @@ class Kuisioner extends CI_Controller {
         $this->load->view('sider');
         $this->load->view('sideBarKiri');
         $this->load->view('index');
-        $jawabanA = 
 
         $idPertanyaan = $this->uri->segment(3);
+        // $jawaban = $this->k->getJawaban($idPertanyaan)->row(0,'array');
+        // $jawabanA = $jawaban['jawabanA'];
+        // $jawabanB = $jawaban['jawabanB'];
+        // $jawabanC = $jawaban['jawabanC'];
+        // $jawabanD = $jawaban['jawabanD'];
+
+        // $hitungJawabanA = count($this->k->graphJawabanA($idPertanyaan,$jawabanA));
+        // $hitungJawabanB = count($this->k->graphJawabanA($idPertanyaan,$jawabanB));
+        // $hitungJawabanC = count($this->k->graphJawabanA($idPertanyaan,$jawabanC));
+        // $hitungJawabanD = count($this->k->graphJawabanA($idPertanyaan,$jawabanD));
+
+        // $data['graph'] = $this->k->graph($idPertanyaan);
+        
+
+
+        // print_r($hitungJawabanD); die;
         
         $data['graph'] = $this->k->graph($idPertanyaan);
 

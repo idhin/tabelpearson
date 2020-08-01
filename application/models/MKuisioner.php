@@ -21,12 +21,51 @@ class MKuisioner extends CI_Model {
         return $this->db->get()->result();
     }   
 
+    public function graphJawabanA($idPertanyaan,$jawabanA){
+        $this->db->select('jawaban');
+        $this->db->from('responden');
+        $this->db->where('idPertanyaan',$idPertanyaan);
+        $this->db->where('jawaban',$jawabanA);
+		return $this->db->get()->result();
+    }
+
+    public function graphJawabanB($idPertanyaan,$jawabanB){
+        $this->db->select('jawaban');
+        $this->db->from('responden');
+        $this->db->where('idPertanyaan',$idPertanyaan);
+        $this->db->where('jawaban',$jawabanB);
+		return $this->db->get()->result();
+    }
+
+    public function graphJawabanC($idPertanyaan,$jawabanC){
+        $this->db->select('jawaban');
+        $this->db->from('responden');
+        $this->db->where('idPertanyaan',$idPertanyaan);
+        $this->db->where('jawaban',$jawabanC);
+		return $this->db->get()->result();
+    }
+
+    public function graphJawabanD($idPertanyaan,$jawabanD){
+        $this->db->select('jawaban');
+        $this->db->from('responden');
+        $this->db->where('idPertanyaan',$idPertanyaan);
+        $this->db->where('jawaban',$jawabanD);
+		return $this->db->get()->result();
+    }
+
     public function graph($idPertanyaan)
 	{
         $this->db->select('*');
-        $this->db->from('responden');
+        $this->db->from('responden r');
         $this->db->where('idPertanyaan',$idPertanyaan);
 		return $this->db->get()->result();
+    }
+
+    public function getJawaban($idPertanyaan){
+        $this->db->select('jawabanA,jawabanB,jawabanC,jawabanD');
+        $this->db->from('pertanyaan');
+        $this->db->where('id',$idPertanyaan);
+        return $this->db->get();
     }
 
     public function getNamaResponden($idKuisioner){
