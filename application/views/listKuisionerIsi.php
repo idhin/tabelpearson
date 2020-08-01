@@ -8,7 +8,7 @@
                                 <div class="card-body">
                                     <h5 class="card-title">Berikut Pertanyaan Yang Sudah Anda Buat   </h5>
                                     <a href="<?= base_url();?>kuisioner/tambahPertanyaann/<?= $this->uri->segment(3); ?>" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Tambah Pertanyaan</a>
-                                    <a href="<?= base_url();?>kuisioner/lihatGrafik/<?= $this->uri->segment(3); ?>" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Lihat Grafik</a>
+                                   
                                        <br>             <br>
                                     <!-- <p>Use <code>.table-striped</code> to add zebra-striping to any table row within the <code>&lt;tbody&gt;</code>.</p> -->
                                     <div class="table-container">
@@ -37,7 +37,8 @@
                                                     <td><?= $row->jawabanD ?></td>
                                         
                                                     <td><a href="<?= base_url();?>kuisioner/editKuisioner/<?= $row->id ?>" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Edit</a>
-                                                    <a href="<?= base_url();?>kuisioner/hapusIsiKuisioner/<?= $row->id ?>" class="btn btn-danger btn-sm active" role="button" aria-pressed="true">Hapus</a></td>
+                                                    <a href="<?= base_url();?>kuisioner/hapusIsiKuisioner/<?= $row->id ?>" class="btn btn-danger btn-sm active" role="button" aria-pressed="true">Hapus</a>
+                                                    <a href="<?= base_url();?>kuisioner/lihatGrafik/<?= $row->id ?>" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Lihat Grafik</a></td>
                                                     
                                                     <!-- <td><button type="button" href="google.com" class="btn btn-primary btn-xs waves-effect waves-light">Edit</button></td> -->
                                                 </tr>

@@ -21,6 +21,14 @@ class MKuisioner extends CI_Model {
         return $this->db->get()->result();
     }   
 
+    public function graph($idPertanyaan)
+	{
+        $this->db->select('*');
+        $this->db->from('responden');
+        $this->db->where('idPertanyaan',$idPertanyaan);
+		return $this->db->get()->result();
+    }
+
     public function getNamaResponden($idKuisioner){
         $this->db->distinct();
         $this->db->select('r.orangKe,r.nama');

@@ -860,24 +860,20 @@ class Kuisioner extends CI_Controller {
         $this->load->view('lihatHasilResponden',$data);
     }
 
-	public function graph()
-	{
-		$data = $this->db->query("SELECT * from responden");
-		return $data->result();
-    }
+
     
     public function lihatGrafik(){
         // $this->load->view('headerChart');
         $this->load->view('sider');
         $this->load->view('sideBarKiri');
         $this->load->view('index');
+        $jawabanA = 
 
-        $idKuisioner = $this->uri->segment(3);
+        $idPertanyaan = $this->uri->segment(3);
         
-        $data['graph'] = $this->graph();
+        $data['graph'] = $this->k->graph($idPertanyaan);
 
-        $this->load->view('lihatGrafik',$data,$idKuisioner);
-
+        $this->load->view('lihatGrafik',$data);
     }
 
 
