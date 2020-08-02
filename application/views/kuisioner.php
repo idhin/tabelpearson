@@ -7,7 +7,8 @@
 <div class="card">
                                 <div class="card-body">
                                     <h5 class="card-title">Tambah Kuisioner </h5>
-                                    <?= form_open('kuisioner/prosesKuisioner');?>
+                                    <!--  -->
+                                    <form id="myForm" method="POST" action="<?=  base_url();?>kuisioner/prosesKuisioner">
                                         <!-- <div class="form-group">
                                             <label for="exampleFormControlInput1">Kode Kuisioner</label>
                                             <input type="text" class="form-control" name="kodeKuisioner" value="" id="exampleFormControlInput1" >
@@ -15,12 +16,12 @@
 
                                         <div class="form-group">
                                             <label for="exampleFormControlInput1">Judul</label>
-                                            <input type="text" class="form-control" name="judul" id="exampleFormControlInput1" >
+                                            <input type="text" class="form-control" name="judul" id="judul" >
                                         </div>
 
                                         <div class="form-group">
                                             <label for="exampleFormControlTextarea1">Deskripsi Judul (Opsional)</label>
-                                            <input type="text" class="form-control" name="deskripsi" rows="10" id="exampleFormControlInput1" >
+                                            <input type="text" class="form-control" name="deskripsi" rows="10" id="deskripsi" >
                                             <!-- <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea> -->
                                         </div>
                                         
@@ -70,10 +71,22 @@
                                         </div>
 
  -->
-
-
-                                        <button type="submit" class="btn btn-primary rounded-pill waves-effect waves-light">Submit</button>
-<?= form_close(); ?>
+                                    </form>
+                                        <button class="btn btn-primary rounded-pill waves-effect waves-light" onclick="Submits()">Submit</button>
+                                        
+<script >
+    function Submits(){
+        var judul = document.getElementById('judul').value;
+        var deskripsi = document.getElementById('deskripsi').value;
+        var form = document.getElementById('myForm');
+        if(judul ==  '' || deskripsi == ''){
+            alert("Judul atau Deskripsi tidak boleh kosong");
+        }else{
+            form.submit();
+        }
+        
+    }
+</script>
 
                                         
 <!-- 
