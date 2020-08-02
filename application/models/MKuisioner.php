@@ -414,13 +414,13 @@ class MKuisioner extends CI_Model {
         return $data[0]->nama;
     }
 
-    public function graph($idPertanyaan)
-	{
-        $this->db->select('*');
-        $this->db->from('responden r');
-        $this->db->where('idPertanyaan',$idPertanyaan);
-		return $this->db->get()->result();
-    }
+//    public function graph($idPertanyaan)
+//	{
+//       $this->db->select('*');
+//     $this->db->from('responden r');
+//        $this->db->where('idPertanyaan',$idPertanyaan);
+//		return $this->db->get()->result();
+//    }
 
 
     public function lihatPearson($id){
