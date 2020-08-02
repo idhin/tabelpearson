@@ -10,14 +10,14 @@
     input {
       background-color: #fcfcfc;
       border: 0;
-      border-bottom: 1px solid lightgrey;
+      border-bottom: 0.1px solid lightgrey;
       padding: 10px;
       
     }
     input:focus {
       background-color: #fcfcfc;
       border: 0;
-      border-bottom: 2px solid lightgrey;
+      border-bottom: 0.1px solid lightgrey;
       padding: 10px;
       outline: none
     }

@@ -16,10 +16,22 @@
                                                     <th scope="col">Judul</th>
                                                     <th scope="col">Deskripsi</th>
                                                     <th scope="col">Link</th>
+                                                    <th scope="col">Status</th>
                                                     <th scope="col">Aksi</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                            <?php if($totalKusioner < 1 ){
+                                               echo "<tr>
+                                               <th></th>
+                                               <th></th>
+                                               <th>Anda Belum membuat kuisioner</th>
+                                                <th></th>
+                                                <th></th>
+                                                </tr>";
+                                            }else{ ?>
+
+                                            
                                                <?php $no=1; foreach ($listKuisioner as $row) { ?>
                                                 <tr>
                                                     <th scope="row"><?= $no++; ?></th>
@@ -27,6 +39,7 @@
                                                  
                                                     <td><?= $row->deskripsi ?></td>
                                                     <td><?= base_url(); ?>user/share/<?=  $row->id ?></td>
+                                                    <td><?php echo $status[$no-1] ?></td>
                                                     <td><a href="<?= base_url();?>kuisioner/lihatKuisioner/<?= $row->id ?>" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Detail</a>
                                                     
                                                     <a href="<?=  base_url();?>kuisioner/lihatNamaResponden/<?= $row->id ?>" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Lihat Responden</a>
@@ -37,7 +50,7 @@
                                                     </td>                                              
                                                     <!-- <td><button type="button" href="google.com" class="btn btn-primary btn-xs waves-effect waves-light">Edit</button></td> -->
                                                 </tr>
-                                               <?php } ?>
+                                               <?php } }?>
                                             </tbody>
                                         </table>       
                                     </div>

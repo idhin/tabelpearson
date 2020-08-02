@@ -60,6 +60,18 @@ class MKuisioner extends CI_Model {
         return $this->db->get()->result();
     }
 
+    public function jumPearson($id){
+        $this->db->select('*');
+        $this->db->from('pearson');
+        $this->db->where('idKuisioner',$id);
+        return $this->db->get()->result();
+    }
+
+    public function deletePearson($id){
+        $this->db->where('idKuisioner',$id);
+        $this->db->delete('pearson');
+    }
+
     public function getPertanyaanAja(){
         $this->db->distinct();
         $this->db->select('idKuisioner');
@@ -76,6 +88,14 @@ class MKuisioner extends CI_Model {
         $this->db->where('idKuisioner',$kode);
         $this->db->from('pertanyaan');
         return $this->db->get()->result();
+    }
+
+    public function getTotalPertanyaan($id){
+        $this->db->select("*");
+        $this->db->where('idKuisioner',$id);
+        $this->db->from('pertanyaan');
+        $query= $this->db->get();
+        return $query->num_rows();
     }
 
     public function hapusKuisioner($id){
@@ -198,6 +218,179 @@ class MKuisioner extends CI_Model {
         return $this->db->get();
     }
 
+    public function getTotalResponden($id){
+        $this->db->select('*');
+        $this->db->from('responden');
+        $this->db->where('idKuisioner',$id);
+        $data =  $this->db->get()->result();
+        $responden = 0;
+        for($i=0;$i<count($data);$i++){
+            if($data[$i]->orangKe == $responden){
+
+            }else{
+                $responden = $responden+1;
+            }
+        }
+        return $responden;
+    }
+    public function getTotalX($id,$soal){
+        $this->db->select('*');
+        $this->db->from('responden');
+        $this->db->where('idKuisioner',$id);
+        $this->db->where('soalKe',$soal);
+        $data =  $this->db->get()->result();
+        $x = 0;
+        for($i=0;$i<count($data);$i++){
+            $x = $x+$data[$i]->nilai;
+        }
+        return $x;
+    }
+    public function getTotalX2($id,$soal){
+        $this->db->select('*');
+        $this->db->from('responden');
+        $this->db->where('idKuisioner',$id);
+        $this->db->where('soalKe',$soal);
+        $data =  $this->db->get()->result();
+        $x = 0;
+        for($i=0;$i<count($data);$i++){
+            $x = $x+($data[$i]->nilai*$data[$i]->nilai);
+        }
+        return $x;
+    }
+    public function getTotalY($id){
+        $this->db->select('*');
+        $this->db->from('responden');
+        $this->db->where('idKuisioner',$id);
+        $data =  $this->db->get()->result();
+        $y = 0;
+        $responden=0;
+        $nilai=0;
+        for($i=0;$i<count($data);$i++){
+            if($responden == $data[$i]->orangKe){
+                $nilai = $nilai+$data[$i]->nilai;
+            }else{
+                $y=$y+$nilai;
+                $nilai = $data[$i]->nilai;
+                $responden = $responden+1;
+            }
+        }
+        $y=$y+$nilai;
+        return $y;
+    }
+    public function getTotalY2($id){
+        $this->db->select('*');
+        $this->db->from('responden');
+        $this->db->where('idKuisioner',$id);
+        $data =  $this->db->get()->result();
+        $y = 0;
+        $responden=0;
+        $nilai=0;
+        for($i=0;$i<count($data);$i++){
+            if($responden == $data[$i]->orangKe){
+                $nilai = $nilai+$data[$i]->nilai;
+            }else{
+                $y=$y+($nilai*$nilai);
+                $nilai = $data[$i]->nilai;
+                $responden = $responden+1;
+            }
+            // $y = $y+($data[$i]->nilai*$data[$i]->nilai);
+        }
+        $y=$y+($nilai*$nilai);
+        return $y;
+    }
+
+    public function getTotalXY($id,$soal){
+        $this->db->select('*');
+        $this->db->from('responden');
+        $this->db->where('idKuisioner',$id);
+        $this->db->where('soalKe',$soal);
+        $data =  $this->db->get()->result();
+        $x = array();
+        for($i=0;$i<count($data);$i++){
+            // $x = $x+$data[$i]->nilai;
+            array_push($x,$data[$i]->nilai);
+        }
+        // return $x;
+        $this->db->select('*');
+        $this->db->from('responden');
+        $this->db->where('idKuisioner',$id);
+        $data =  $this->db->get()->result();
+        $y = array();
+        $responden=0;
+        $nilai=0;
+        for($i=0;$i<count($data);$i++){
+            if($responden == $data[$i]->orangKe){
+                $nilai = $nilai+$data[$i]->nilai;
+            }else{
+                array_push($y,$nilai);
+                $nilai = $data[$i]->nilai;
+                $responden = $responden+1;
+            }
+        }
+        array_push($y,$nilai);
+        $xy=0;
+        for($i=0;$i<count($x);$i++){
+            $xy=$xy+($x[$i]*$y[$i+1]);
+        }
+        return $xy;
+    }
+    public function tambahPearson($data){
+        $this->db->insert('pearson',$data);
+    }
+
+    public function getStatus($id){
+        $this->db->select("*");
+        $this->db->from("pearson");
+        $this->db->where('idKuisioner',$id);
+        $data = $this->db->get()->result();
+        $status = "Valid";
+        if(count($data) > 0){
+            for($i=1;$i<count($data);$i++){
+                if($data[$i]->status == "Valid"){
+    
+                }else{
+                    $status = "Tidak Valid";
+                }
+            }
+        }else{
+            $status = "Belum Ada";
+        }
+       
+        return $status;
+    }
+
+    public function getResponden($idK,$orangke){
+        $this->db->select("*");
+        $this->db->from("responden");
+        $this->db->where(["idKuisioner"=>$idK,"orangKe"=>$orangke]);
+        $data = $this->db->get()->result();
+        return $data[0]->nama;
+    }
+
+    public function graph($idPertanyaan)
+	{
+        $this->db->select('*');
+        $this->db->from('responden r');
+        $this->db->where('idPertanyaan',$idPertanyaan);
+		return $this->db->get()->result();
+    }
+
+
+    public function lihatPearson($id){
+        $this->db->select("*");
+        $this->db->from("pearson");
+        $this->db->where('idKuisioner',$id);
+        $data = $this->db->get()->result();
+        return $data;
+    }
+    public function totPertanyaan($id){
+        $this->db->select('*');
+        $this->db->where('idKuisioner',$id);
+        $this->db->from ('pertanyaan');
+        return $this->db->get()->result();
+    }
+    
+
 
     public function personDatNama($kode){
         $this->db->distinct();
@@ -278,7 +471,7 @@ class MKuisioner extends CI_Model {
 
     public function TotalPertanyaan($kode){
         $this->db->select('*');
-        $this->db->where('kodeKuisioner',$id);
+        $this->db->where('kodeKuisioner',$kode);
         $this->db->from ('kuisioner');
         return $this->db->get()->result();
     }
@@ -290,6 +483,8 @@ class MKuisioner extends CI_Model {
         $this->db->where('p.idKuisioner',$kode);
         return $this->db->get()->result();
     }
+
+    
 
     
     public function respondd($data){

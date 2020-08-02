@@ -22,6 +22,78 @@ class Kuisioner extends CI_Controller {
         $this->load->view('sideBarKiri');
         $this->load->view('index');
     }
+    public function hitungP(){
+        $id = $this->uri->segment(3);
+        $n=  $this->k->getTotalResponden($id);
+        if($n < 3 ){
+            echo "<script>alert('Di butuhkan minimal 3 responden untuk melakukan kalkulasi pearson');</script>";
+            redirect('kuisioner/lihatPearson/'.$id,'refresh');
+        }else{
+
+        
+        $tP = $this->k->totPertanyaan($id);
+        $jumPearson = $this->k->jumPearson($id);
+        if(count($jumPearson) == 0){
+
+        }else{
+            $this->k->deletePearson($id);
+        }
+        for($i=1;$i<=count($tP);$i++){
+            $totalX = $this->k->getTotalX($id,$i);
+            $totalX2 = $this->k->getTotalX2($id,$i);
+            $totalY = $this->k->getTotalY($id);
+            $totalY2 = $this->k->getTotalY2($id);
+            $totalXY= $this->k->getTotalXY($id,$i);
+            $rHitungatas = $n*$totalXY - $totalX*$totalY;
+            $rHitungbawahkiri = ($n*$totalX2 - $totalX*$totalX);
+            $rHitungbawahkanan = ($n*$totalY2 - $totalY*$totalY);
+            $rHitungbawah = sqrt($rHitungbawahkiri*$rHitungbawahkanan);
+            if($rHitungatas !=0){
+                $rHitung = $rHitungatas/$rHitungbawah;
+            }else{
+                $rHitung = 0;
+            }
+            
+            $rTabel= array();
+            $rTabel[3]=0.997;$rTabel[4]=0.950;$rTabel[5]=0.878;$rTabel[6]=0.811;$rTabel[7]=0.754;$rTabel[8]=0.707;$rTabel[9]=0.666;$rTabel[10]=0.632;$rTabel[11]=0.602;$rTabel[12]=0.576;$rTabel[13]=0.553;$rTabel[14]=0.532;$rTabel[15]=0.514;$rTabel[16]=0.497;$rTabel[17]=0.482;$rTabel[18]=0.468;$rTabel[19]=0.456;$rTabel[20]=0.444;
+            if($rHitung > $rTabel[$n]){
+                $status = "Valid";
+            }else{
+                $status =  "Tidak Valid";
+            }
+            $data= array('idKuisioner'=>$id,'idPertanyaan'=>$i,'rtable'=>$rTabel[$n],'thitung'=>number_format($rHitung,3),'status'=>$status);
+            $this->k->tambahPearson($data);
+           
+        }
+        redirect($_SERVER['HTTP_REFERER']);
+        // print_r($rTabel[$n]);
+        // echo $totalXY[2];
+    }
+    }
+    // public function hitungPA(){
+    //     $id = $this->uri->segment(3);
+    //     $n=  $this->k->getTotalResponden($id);
+    //     $totalX = $this->k->getTotalX($id,1);
+    //     $totalX2 = $this->k->getTotalX2($id,1);
+    //     $totalY = $this->k->getTotalY($id);
+    //     $totalY2 = $this->k->getTotalY2($id);
+    //     $totalXY= $this->k->getTotalXY($id,1);
+    //     $rHitungatas = $n*$totalXY - $totalX*$totalY;
+    //     $rHitungbawahkiri = ($n*$totalX2 - $totalX*$totalX);
+    //     $rHitungbawahkanan = ($n*$totalY2 - $totalY*$totalY);
+    //     $rHitungbawah = sqrt($rHitungbawahkiri*$rHitungbawahkanan);
+    //     $rHitung = $rHitungatas/$rHitungbawah;
+    //     $rTabel= array();
+    //     $rTabel[3]=0.997;$rTabel[4]=0.950;$rTabel[5]=0.878;$rTabel[6]=0.811;$rTabel[7]=0.754;$rTabel[8]=0.707;$rTabel[9]=0.666;$rTabel[10]=0.632;$rTabel[11]=0.602;$rTabel[12]=0.576;$rTabel[13]=0.553;$rTabel[14]=0.532;$rTabel[15]=0.514;$rTabel[16]=0.497;$rTabel[17]=0.482;$rTabel[18]=0.468;$rTabel[19]=0.456;$rTabel[20]=0.444;
+    //     if($rHitung > $rTabel[$n]){
+    //         echo "Valid";
+    //     }else{
+    //         echo "Tidak Valid";
+    //     }
+   
+    //     // print_r($rTabel[$n]);
+    //     // echo $totalXY[2];
+    // }
     
     public function tambahKuisioner(){
         $this->load->view('header');
@@ -32,19 +104,29 @@ class Kuisioner extends CI_Controller {
     }
 
     public function tambahPertanyaan(){
+        $id = $this->uri->segment(3);
+        $p = $this->k->getTotalPertanyaan($id);
+        $data['total']=$p;
+        $data['id']=$id;
+        $data['judul'] = $this->k->getJudulKuisioner($id);
         $this->load->view('header');
         $this->load->view('sider');
         $this->load->view('sideBarKiri');
         $this->load->view('index');
-        $this->load->view('tambahPertanyaan');
+        $this->load->view('tambahPertanyaan',$data);
     }
 
     public function tambahPertanyaann(){
+        $id = $this->uri->segment(3);
+        $p = $this->k->getTotalPertanyaan($id);
+        $data['total']=$p;
+        $data['id']=$id;
+        $data['judul'] = $this->k->getJudulKuisioner($id);
         $this->load->view('header');
         $this->load->view('sider');
         $this->load->view('sideBarKiri');
         $this->load->view('index');
-        $this->load->view('tambahPertanyaann');
+        $this->load->view('tambahPertanyaann',$data);
     }
 
     public function tambahKuisionerr(){
@@ -260,6 +342,27 @@ class Kuisioner extends CI_Controller {
 
     }
 
+    public function graph()
+	{
+		$data = $this->db->query("SELECT * from responden");
+		return $data->result();
+    }
+    
+    public function lihatGrafik(){
+        // $this->load->view('headerChart');
+        $this->load->view('sider');
+        $this->load->view('sideBarKiri');
+        $this->load->view('index');
+
+        $idPertanyaan = $this->uri->segment(3);
+        $idKuisioner= $this->uri->segment(3);
+        
+        $data['graph'] = $this->k->graph($idPertanyaan);
+
+        $this->load->view('lihatGrafik',$data,$idKuisioner);
+
+    }
+
     public function listKuisioner(){
         $this->load->view('header');
         $this->load->view('sider');
@@ -267,30 +370,15 @@ class Kuisioner extends CI_Controller {
         $this->load->view('index');
         $idCustomer = $this->session->userdata['pelangganLogin']['id'];
         // $data['listPerson'] = $this->k->getListPerson($idCustomer);
-
+        $status = array();
         $data['listKuisioner'] = $this->k->getListKodeKuisioner($idCustomer)->result();
         $listKuisioner = $this->k->getListKodeKuisioner($idCustomer)->result();
         $totalListKuisioner = count ($listKuisioner);
-
-        // print_r ($listKuisioner); die;
-        
-
-        // $data['pearson'] = $this->k->getDataPearson();
-
-        // print_r($dataaa); die;
-
-        // for ($x=0; $x<$totalListKuisioner; $x++){
-        //     $nilai = $listKuisioner[$x]->id;
-
-        //     $rhitung = $this->pearson($nilai);
-        //     // return true;
-
-        //     echo $rhitung; 
-        // }
-
-        // die;
-
-    
+        $data['totalKusioner'] = $totalListKuisioner;
+        for($i=0;$i<count($listKuisioner);$i++){
+            $status[$i+1] = $this->k->getStatus($listKuisioner[$i]->id);
+        }
+        $data['status']=$status;
         $this->load->view('listKuisioner',$data);
     }
 
@@ -303,6 +391,7 @@ class Kuisioner extends CI_Controller {
 
         $idOrang = $this->uri->segment(3);
         $idKuisioner = $this->uri->segment(4);
+        $data['tes'] = $this->k->getResponden($idKuisioner,$idOrang);
         // print_r($idKuisioner); die;
         $data['listResponden'] = $this->k->listResponden($idOrang,$idKuisioner);
         $this->load->view('lihatResponden',$data);
@@ -320,7 +409,7 @@ class Kuisioner extends CI_Controller {
 
         $idKuisioner = $this->uri->segment(3);
         $data['listNamaResponden'] = $this->k->getNamaResponden($idKuisioner);
-
+        $data['judul'] = $this->k->getJudulKuisioner($idKuisioner);
         // print_r($data); die;
         $this->load->view('lihatNamaResponden',$data);
     }
@@ -654,16 +743,20 @@ class Kuisioner extends CI_Controller {
     }
 
     public function lihatPearson(){
+        $id = $this->uri->segment(3);
+        $data['listPearson'] = $this->k->lihatPearson($id);
+        $data['id'] = $id;
+        $data['judul'] = $this->k->getJudulKuisioner($id);
         $this->load->view('header');
         $this->load->view('sider');
         $this->load->view('sideBarKiri');
         $this->load->view('index');
-        $this->load->view('pearson');
+        $this->load->view('pearson',$data);
 
-        $idKuisioner = $this->uri->segment(3);
-        $pearson = $this->hitungPearson($idKuisioner);
+        // $idKuisioner = $this->uri->segment(3);
+        // $pearson = $this->hitungPearson($idKuisioner);
 
-        print_r ($pearson); die;
+        // print_r ($pearson); die;
 
     }
 
@@ -774,6 +867,18 @@ class Kuisioner extends CI_Controller {
         $this->load->view('lihatHasilResponden',$data);
     }
 
+    public function detailGrafik(){
+        $kode = $this->uri->segment(3);
+
+        $this->load->view('header');
+        $this->load->view('sider');     
+        $this->load->view('sideBarKiri');
+        $this->load->view('index');
+        $data['listKuisioner'] = $this->k->getPertanyaan($kode);
+        $data['judul'] = $this->k->getJudulKuisioner($kode);
+        $this->load->view('detailgrafik',$data);
+    }
+
     public function lihatKuisioner(){
         $this->load->view('header');
         $this->load->view('sider');     
@@ -785,7 +890,7 @@ class Kuisioner extends CI_Controller {
 
         $data['listKuisioner'] = $this->k->getPertanyaan($kode);
         // $data['pearson'] = $this->k->getPearson($kode);
-
+        $data['judul'] = $this->k->getJudulKuisioner($kode);
         // print_r($data); die;
 
          $this->session->set_userdata('referred_from', current_url());
@@ -802,14 +907,32 @@ class Kuisioner extends CI_Controller {
         $this->load->view('isiKuisioner',$data);
     }
 
+    public function preview(){
+        $kode = $this->uri->segment(3);
+
+		$data['pertanyaan'] = $this->k->getKuisionerByIDDD($kode);
+		$data['judul'] = $this->k->getJudulKuisioner($kode);
+
+		$this->load->view('header');
+
+		// print_r ($data); die;
+		$this->load->view('preview',$data);
+        // $this->load->view('isiKuisioner',$data);
+    }
+
     public function editKuisioner(){
        
-        $kode = $this->uri->segment(3);
+        $kode = $this->uri->segment(4);
+        $data['nomor'] = $this->uri->segment(5)-1;
         $idCustomer = $this->session->userdata['pelangganLogin']['id'];
         $data['editKuisioner'] = $this->k->getKuisioner($kode,$idCustomer);
 
         // print_r($data); die;
-
+        $id = $this->uri->segment(3);
+        $p = $this->k->getTotalPertanyaan($id);
+        $data['total']=$p;
+        $data['id']=$id;
+        $data['judul'] = $this->k->getJudulKuisioner($id);
         $this->load->view('header');
         $this->load->view('sider');
         $this->load->view('sideBarKiri');

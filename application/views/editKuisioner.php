@@ -6,7 +6,8 @@
 <!-- Awal Isi -->
 <div class="card">
                                 <div class="card-body">
-                                    <h5 class="card-title">Edit Kuisioner </h5>
+
+                                    <h5 class="card-title">Edit Pertanyaan | Soal Ke <?php echo $nomor; ?> Dari Kuisioner <?php echo $judul->judul_kuisioner; ?></h5> 
                                     <?= form_open('kuisioner/prosesEditKuisioner');?>
                                         <?php foreach ($editKuisioner as $s) { ?>
                                         <!-- <div class="form-group">

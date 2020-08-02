@@ -6,6 +6,7 @@
 <!-- Awal Isi -->
 <div class="card">
                                 <div class="card-body">
+                                <h5 class="card-title">Berikut Adalah Daftar Jawaban dari Responden <?php echo $tes; ?></h5>
                                     <!-- <p>Use <code>.table-striped</code> to add zebra-striping to any table row within the <code>&lt;tbody&gt;</code>.</p> -->
                                     <div class="table-container">
                                         <table class="table table-striped">
