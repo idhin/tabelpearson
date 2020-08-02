@@ -43,30 +43,6 @@
                                     </div>
                                 </div>
                             </div>
-
-                                        
-<!-- 
-                                        <div class="form-group">
-                                            <label for="exampleFormControlSelect1" style="display: none;">Example select</label>
-                                            <select class="form-control custom-select" id="exampleFormControlSelect1">
-                                                <option>1</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                                <option>4</option>
-                                                <option>5</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="exampleFormControlSelect2" style="display: none;">Example multiple select</label>
-                                            <select multiple="" class="form-control custom-select" id="exampleFormControlSelect2">
-                                                <option>1</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                                <option>4</option>
-                                                <option>5</option>
-                                            </select>
-                                        </div> -->
-                                        
                                     </form>
                                 </div>
                             </div>
