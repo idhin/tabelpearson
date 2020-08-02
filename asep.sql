@@ -2,10 +2,17 @@
 -- version 4.7.0
 -- https://www.phpmyadmin.net/
 --
+<<<<<<< HEAD
 -- Host: 127.0.0.1
 -- Generation Time: Jul 31, 2020 at 09:33 PM
 -- Server version: 10.1.26-MariaDB
 -- PHP Version: 7.1.8
+=======
+-- Host: localhost
+-- Generation Time: Jul 26, 2020 at 04:52 PM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.2.31
+>>>>>>> 95c4b21a0d4f9cd9e84b2add1b3078ceedb8039e
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -40,9 +47,13 @@ CREATE TABLE `kuisioner` (
 --
 
 INSERT INTO `kuisioner` (`id`, `iduser`, `judul_kuisioner`, `deskripsi`) VALUES
+<<<<<<< HEAD
 (18, 2, 'Alan Walker - Alone', 'Ini adalah Manusia'),
 (19, 2, 'Gambar 3', 'asdasdasd'),
 (20, 2, 'Mesake Bangsaku', 'Anjay');
+=======
+(4, 2, 'telkom university', 'telkom university adalah suatu universitas');
+>>>>>>> 95c4b21a0d4f9cd9e84b2add1b3078ceedb8039e
 
 -- --------------------------------------------------------
 
@@ -53,7 +64,10 @@ INSERT INTO `kuisioner` (`id`, `iduser`, `judul_kuisioner`, `deskripsi`) VALUES
 CREATE TABLE `pearson` (
   `id` int(11) NOT NULL,
   `idKuisioner` int(11) NOT NULL,
+<<<<<<< HEAD
   `idPertanyaan` int(11) NOT NULL,
+=======
+>>>>>>> 95c4b21a0d4f9cd9e84b2add1b3078ceedb8039e
   `rtable` float NOT NULL,
   `thitung` float NOT NULL,
   `status` varchar(500) NOT NULL
@@ -97,6 +111,7 @@ CREATE TABLE `pertanyaan` (
 INSERT INTO `pertanyaan` (`id`, `idKuisioner`, `pertanyaan`, `jawabanA`, `jawabanB`, `jawabanC`, `jawabanD`, `bobotA`, `bobotB`, `bobotC`, `bobotD`) VALUES
 (7, 4, 'Apakah telkom sangat membantu?', 'sangat membantu', 'membantu', 'tidak membantu', 'sangat tidak membantu', 4, 3, 2, 1),
 (8, 4, 'apakah kamu setuju jika telkom memberikan diskon bpp ?', 'setuju banget', 'setuju', 'tidak setuju ', 'sangat tidak setuju', 4, 3, 2, 1),
+<<<<<<< HEAD
 (9, 4, 'apakah kamu setuju jika telkom memberikan diskon ktm ?', 'sangat setuju', 'setuju', 'tidak setuju ', 'sangat tidak setuju', 4, 3, 2, 1),
 (10, 6, 'Siapa Nama Saya', 'Rama', 'Rama Iswara', 'I Gusti Ngurah Rama ', 'I Gusti Ngurah Rama Iswara', 10, 25, 45, 100),
 (11, 8, 'Siapa Nama Saya', 'Rama', 'Rama Iswara', 'I Gusti Ngurah Rama ', 'I Gusti Ngurah Rama Iswara', 10, 25, 45, 100),
@@ -115,6 +130,9 @@ INSERT INTO `pertanyaan` (`id`, `idKuisioner`, `pertanyaan`, `jawabanA`, `jawaba
 (24, 17, 'Siapa Nama Saya', 'Rama', 'Rama Iswara', 'I Gusti Ngurah Rama ', 'I Gusti Ngurah Rama Iswara', 10, 25, 45, 100),
 (25, 18, 'Siapa Nama Saya', 'Rama', 'Rama Iswara', 'I Gusti Ngurah Rama ', 'I Gusti Ngurah Rama Iswara', 1, 2, 3, 4),
 (26, 18, 'Apa Kabar ?', 'Baik', 'Buruk', 'Makan', 'Tidur', 1, 2, 3, 4);
+=======
+(9, 4, 'apakah kamu setuju jika telkom memberikan diskon ktm ?', 'sangat setuju', 'setuju', 'tidak setuju ', 'sangat tidak setuju', 4, 3, 2, 1);
+>>>>>>> 95c4b21a0d4f9cd9e84b2add1b3078ceedb8039e
 
 -- --------------------------------------------------------
 
@@ -141,6 +159,7 @@ CREATE TABLE `responden` (
 INSERT INTO `responden` (`id`, `idpertanyaan`, `idKuisioner`, `nama`, `email`, `nilai`, `jawaban`, `orangKe`, `soalKe`) VALUES
 (20, 7, 4, 'Dadang Sudadang', 'dadang@dadang.com', 1, 'sangat tidak membantu', 1, 1),
 (21, 8, 4, 'Dadang Sudadang', 'dadang@dadang.com', 1, 'sangat tidak setuju', 1, 2),
+<<<<<<< HEAD
 (22, 9, 4, 'Dadang Sudadang', 'dadang@dadang.com', 1, 'sangat tidak setuju', 1, 3),
 (23, 14, 11, 'I Gusti Ngurah Rama Iswara', 'ramaiswara10081998@gmail.com', 25, 'Rama Iswara', 1, 1),
 (24, 15, 11, 'I Gusti Ngurah Rama Iswara', 'ramaiswara10081998@gmail.com', 45, 'I Gusti Ngurah Rama ', 1, 2),
@@ -192,6 +211,9 @@ INSERT INTO `responden` (`id`, `idpertanyaan`, `idKuisioner`, `nama`, `email`, `
 (70, 26, 18, 'I Gusti Ngurah Rama Iswara', 'ramaiswara10081998@gmail.com', 4, 'Tidur', 7, 2),
 (71, 25, 18, 'I Gusti Ngurah Rama Iswara', 'ramaiswara10081998@gmail.com', 1, 'Rama', 8, 1),
 (72, 26, 18, 'I Gusti Ngurah Rama Iswara', 'ramaiswara10081998@gmail.com', 3, 'Makan', 8, 2);
+=======
+(22, 9, 4, 'Dadang Sudadang', 'dadang@dadang.com', 1, 'sangat tidak setuju', 1, 3);
+>>>>>>> 95c4b21a0d4f9cd9e84b2add1b3078ceedb8039e
 
 -- --------------------------------------------------------
 
@@ -257,7 +279,12 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `kuisioner`
 --
 ALTER TABLE `kuisioner`
+<<<<<<< HEAD
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+=======
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+>>>>>>> 95c4b21a0d4f9cd9e84b2add1b3078ceedb8039e
 --
 -- AUTO_INCREMENT for table `pearson`
 --
@@ -267,12 +294,22 @@ ALTER TABLE `pearson`
 -- AUTO_INCREMENT for table `pertanyaan`
 --
 ALTER TABLE `pertanyaan`
+<<<<<<< HEAD
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+=======
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+>>>>>>> 95c4b21a0d4f9cd9e84b2add1b3078ceedb8039e
 --
 -- AUTO_INCREMENT for table `responden`
 --
 ALTER TABLE `responden`
+<<<<<<< HEAD
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
+=======
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+
+>>>>>>> 95c4b21a0d4f9cd9e84b2add1b3078ceedb8039e
 --
 -- AUTO_INCREMENT for table `user`
 --
