@@ -43,14 +43,6 @@
                                                     <td><a href="<?= base_url();?>kuisioner/editKuisioner/<?= $this->uri->segment(3); ?>/<?= $row->id."/".$no; ?>" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Edit</a>
                                                     <a href="<?= base_url();?>kuisioner/hapusIsiKuisioner/<?= $row->id ?>" class="btn btn-danger btn-sm active" role="button" aria-pressed="true">Hapus</a>
                                                     <a href="<?= base_url();?>kuisioner/lihatGrafik/<?= $row->id ?>" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Lihat Grafik</a></td>
-
-                                                    <td><a href="<?= base_url();?>kuisioner/editKuisioner/<?= $this->uri->segment(3); ?>/<?= $row->id."/".$no; ?>" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Edit</a>
-                                                    <a href="<?= base_url();?>kuisioner/hapusIsiKuisioner/<?= $row->id ?>" class="btn btn-danger btn-sm active" role="button" aria-pressed="true">Hapus</a>
-                                                    <a href="<?= base_url();?>kuisioner/lihatGrafik/<?= $row->id ?>" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Lihat Grafik</a></td>
-
-                                                    <td><a href="<?= base_url();?>kuisioner/editKuisioner/<?= $row->id ?>" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Edit</a>
-                                                    <a href="<?= base_url();?>kuisioner/hapusIsiKuisioner/<?= $row->id ?>" class="btn btn-danger btn-sm active" role="button" aria-pressed="true">Hapus</a>
-                                                    <a href="<?= base_url();?>kuisioner/lihatGrafik/<?= $row->id ?>" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Lihat Grafik</a></td>
                                                     <!-- <td><button type="button" href="google.com" class="btn btn-primary btn-xs waves-effect waves-light">Edit</button></td> -->
                                                 </tr>
                                                 <?php }} ?>

@@ -27,8 +27,6 @@
         <link href="<?= base_url(); ?>assets/css/alpha.min.css" rel="stylesheet">
         <link href="<?= base_url(); ?>assets/css/custom.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
-        <!-- <script src="http://code.highcharts.com/highcharts.js"></script> -->
-        
 
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

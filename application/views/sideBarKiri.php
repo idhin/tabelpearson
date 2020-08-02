@@ -4,6 +4,7 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="search-results-header">
+                                <h4>Quick Search Results</h4>
                                 <a href="#" id="closeSearch"><i class="material-icons">close</i></a>
                             </div>
                         </div>
