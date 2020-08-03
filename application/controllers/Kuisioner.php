@@ -20,7 +20,7 @@ class Kuisioner extends CI_Controller {
         $this->load->view('header');
         $this->load->view('sider');
         $this->load->view('sideBarKiri');
-        $this->load->view('index');
+        $this->load->view('index2');
     }
     public function hitungP(){
         $id = $this->uri->segment(3);
